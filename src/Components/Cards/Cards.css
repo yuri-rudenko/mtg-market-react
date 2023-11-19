@@ -1,0 +1,30 @@
+.Cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-right: 10px;
+    margin-top: 20px;
+}
+.Cards img {
+    height: 300px;
+    border-radius: 10px;
+}
+.Cards h1 {
+    color: black;
+}
+.Cards .card {
+    margin: 5px;
+    padding: 5px;
+    border-radius: 10px;
+    max-width: 225px;
+}   
+.Cards .card .text .cardName {
+    text-align: center;
+    font-size: 20px;
+}
+.Cards .card .text .price {
+    font-size: 20px;
+    text-align: center;
+    font-weight: bold;
+    margin: 10px;
+}

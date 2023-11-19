@@ -1,0 +1,13 @@
+.Header {
+    background-color: #F3EEEA;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+}
+.Header .logo {
+    height: 60px;
+    margin-right: 10px;
+}
+.Header .search {
+    
+}
