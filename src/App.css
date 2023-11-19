@@ -1,0 +1,27 @@
+body {
+    background-color: black;
+}
+
+img {
+    height: 300px;
+}
+.App {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-right: 10px;
+}
+.App .card {
+    margin: 5px;
+    padding: 5px;
+    background-color: black;
+}
+.App .price {
+    font-size: 20px;
+    text-align: center;
+    color: white;
+    margin: 10px;
+}
+h1 {
+    color: white;
+}
