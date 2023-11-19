@@ -4,11 +4,11 @@ import { useCardData } from './Functions/useCardData.js';
 
 function App() {
 
-    const { cards, loading, setCards } = useCardData();
+    const { cards, loading, setCards, setLoading } = useCardData();
 
     return (
         <div>
-            <Header onSearch={setCards} />
+            <Header onSearch={setCards} setLoading={setLoading} />
             <Cards data={cards} loading={loading} />
         </div>
     );

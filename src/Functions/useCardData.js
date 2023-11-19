@@ -23,5 +23,5 @@ export function useCardData() {
         fetchData();
     }, []);
 
-    return { cards, loading, setCards };
+    return { cards, loading, setCards, setLoading };
 }
