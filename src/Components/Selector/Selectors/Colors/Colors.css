@@ -1,0 +1,10 @@
+.colorOption img {
+    height: 20px;
+}
+.colorOption {
+    display: flex;
+    flex-direction: row;
+}
+.Colors {
+    color: white;
+}
