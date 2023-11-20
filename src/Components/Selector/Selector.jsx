@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import './Selector.css'
 import axios from 'axios';
 import { checkBadSets } from '../../Functions/checkBadSets';
+import SetSelectElement from './SetSelectElement/SetSelectElement';
 
 const Selector = () => {
 
@@ -19,6 +20,7 @@ const Selector = () => {
                             name: set.name,
                             card_count: set.card_count,
                             image: set.icon_svg_uri,
+                            id: set.id,
                         }
                         setSets(prevSets => ([...prevSets, objSet]))
                     }
@@ -38,11 +40,14 @@ const Selector = () => {
                 mode="multiple"
                 size="large"
                 placeholder="Set"
+                maxTagCount={3}
+                maxTagTextLength={10}
+                allowClear
                 style={{ width: '100%', background: '#EBE3D5' }}
             >
                 {
                 sets.map(set => {
-                    return <Select.Option key={set.name} value={set.name}>{set.name}</Select.Option>
+                    return <Select.Option key={set.id} value={set.name}><SetSelectElement set={set}/></Select.Option>
                 })
                 }
             </Select>

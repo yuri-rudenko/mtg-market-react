@@ -1,0 +1,10 @@
+.SetSelectElement {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.SetSelectElement img {
+    height: 15px;
+    width: 15px;
+    margin-right: 3px;
+}
