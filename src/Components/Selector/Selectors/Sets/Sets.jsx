@@ -18,7 +18,6 @@ const Sets = (props) => {
 
         axios.get('https://api.scryfall.com/sets')
             .then(response => {
-                console.log(response.data.data)
                 response.data.data.map(set => {
                     if(checkBadSets(set)) {
                         let objSet = {
