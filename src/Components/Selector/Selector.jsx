@@ -3,6 +3,7 @@ import './Selector.css'
 import Sets from './Selectors/Sets/Sets';
 import Colors from './Selectors/Colors/Colors';
 import Types from './Selectors/Types/Types.jsx';
+import Value from './Selectors/Value/Value';
 
 const Selector = () => {
 
@@ -10,7 +11,8 @@ const Selector = () => {
 
     return (
         <div className='Selector'>
-            <h1>Selector</h1>
+            <h2>Products Filter</h2>
+            <Value/>
             <Sets setSets={setSets} sets={sets}/>
             <Colors/>
             <Types/>
