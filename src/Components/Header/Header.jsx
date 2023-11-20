@@ -25,7 +25,7 @@ const Header = (props) => {
         async function getData() {
             try {
                 setLoading(true)
-                let result = await axios.get(`https://api.scryfall.com/cards/search?order=cmc&q=${name}`)
+                let result = await axios.get(`https://api.scryfall.com/cards/search?order=usd&q=${name}`)
                 setCards(result.data.data)
             }
             catch(error) {

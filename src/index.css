@@ -8,5 +8,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 body {
-  background-color: #EBE3D5;
+  background-color: #dbd3c4;
+}
+.App .bottom  {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
 }
