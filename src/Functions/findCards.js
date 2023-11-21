@@ -34,11 +34,8 @@ function findCards(url, urlArr, setCards, setLoading) {
                 setCards(response.data.data)
             })
             .catch((error) => {
-                
-                return axios.get("https://api.scryfall.com/cards/search?order=usd&q=e%3ARIX")
-            })
-            .then((fallbackResponse) => {
-                setCards(fallbackResponse.data.data)
+                axios.get("https://api.scryfall.com/cards/search?order=usd&q=e%3ARIX")
+                    .then(response => setCards(response.data.data))
             })
             .finally(() => {
                 setLoading(false)

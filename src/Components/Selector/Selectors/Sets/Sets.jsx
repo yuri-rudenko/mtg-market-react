@@ -7,7 +7,7 @@ import SetSelectElement from './SetSelectElement';
 
 function formUrlSets(curSets, sets, setUrlSets) {
     if (curSets.length === 0) {
-        setUrlSets(prev => ({ ...prev, sets: '' }));
+        setUrlSets(prev => ({ ...prev, sets: '' }))
         return
     };
 
@@ -15,12 +15,10 @@ function formUrlSets(curSets, sets, setUrlSets) {
     let url = ''
 
     for (let setName of curSets) {
-        const set = sets.find(element => element.name === setName);
+        const set = sets.find(element => element.name === setName)
 
         if (set && set.code) {
             codes.push(set.code);
-        } else {
-            console.log(`Set with name '${setName}' not found.`);
         }
     }
     

@@ -5,7 +5,42 @@ import types from './types';
 
 types.sort()
 
-const Types = () => {
+function formUrlTypes(curTypes, setUrlArr) {
+
+    let url = ''
+
+    if (curTypes.length === 0) {
+        setUrlArr(prev => ({ ...prev, types: '' }));   
+        return
+    }
+
+    for(let i = 0; i<curTypes.length; i++) {
+        url += `t:${curTypes[i]}+`
+    }
+
+    setUrlArr(prev => ({ ...prev, types: url }));
+}
+
+function formUrlSubtypes(curSubtypes, setUrlArr) {
+
+    let url = ''
+
+    if (curSubtypes.length === 0) {
+        setUrlArr(prev => ({ ...prev, subtypes: '' }));   
+        return
+    }
+
+    for(let i = 0; i<curSubtypes.length; i++) {
+        url += `t:${curSubtypes[i]}+`
+    }
+
+    setUrlArr(prev => ({ ...prev, subtypes: url }));
+}
+
+
+const Types = (props) => {
+
+    const setUrlArr = props.setUrlArr
 
     const urls = [
         'https://api.scryfall.com/catalog/creature-types',
@@ -47,6 +82,7 @@ useEffect(() => {
                         maxTagCount={3}
                         allowClear
                         style={{ width: '100%', background: '#EBE3D5' }}
+                        onChange={(elements) => formUrlTypes(elements, setUrlArr)}
                     >
                         {
                     types.map(type => {
@@ -63,6 +99,7 @@ useEffect(() => {
                         maxTagCount={3}
                         allowClear
                         style={{ width: '100%', background: '#EBE3D5' }}
+                        onChange={(elements) => formUrlSubtypes(elements, setUrlArr)}
                     >
                         {
                     subTypes.map(subtype => {
