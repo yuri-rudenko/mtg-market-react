@@ -27,7 +27,7 @@ function formUrlSets(curSets, sets, setUrlSets) {
     for(let i = 0; i<codes.length; i++) {
         url += `e:${codes[i]}`
         if(i < codes.length-1)url += `+or+`
-        if(i == codes.length-1) url += `+`
+        if(i === codes.length-1) url += `+`
     }
 
     setUrlSets(prev => ({ ...prev, sets: url }));
@@ -45,7 +45,7 @@ const Sets = (props) => {
 
         axios.get('https://api.scryfall.com/sets')
             .then(response => {
-                response.data.data.map(set => {
+                response.data.data.forEach(set => {
                     if(checkBadSets(set)) {
                         let objSet = {
                             name: set.name,
