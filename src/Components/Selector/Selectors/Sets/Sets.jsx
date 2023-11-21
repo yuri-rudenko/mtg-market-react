@@ -23,9 +23,10 @@ function formUrlSets(curSets, sets, setUrlSets) {
     }
     
     for(let i = 0; i<codes.length; i++) {
+        if(i === 0 && codes.length>1) url+='('
         url += `e:${codes[i]}`
         if(i < codes.length-1)url += `+or+`
-        if(i === codes.length-1) url += `+`
+        if(i === codes.length-1 && codes.length>1) url += `)+`
     }
 
     setUrlSets(prev => ({ ...prev, sets: url }));
