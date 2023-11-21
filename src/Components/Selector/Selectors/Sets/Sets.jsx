@@ -1,18 +1,45 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Sets.css'
 import { Select } from 'antd';
 import { checkBadSets } from '../../../../Functions/checkBadSets';
 import axios from 'axios';
 import SetSelectElement from './SetSelectElement';
 
+function formUrlSets(curSets, sets, setUrlSets) {
+    if (curSets.length === 0) {
+        setUrlSets('')
+        return
+    };
 
+    let codes = []
+    let url = ''
+
+    for (let setName of curSets) {
+        const set = sets.find(element => element.name === setName);
+
+        if (set && set.code) {
+            codes.push(set.code);
+        } else {
+            console.log(`Set with name '${setName}' not found.`);
+        }
+    }
+    
+    for(let i = 0; i<codes.length; i++) {
+        url += `e:${codes[i]}`
+        if(i < codes.length-1)url += `+or+`
+        if(i == codes.length-1) url += `+`
+    }
+
+    setUrlSets(prev => ({ ...prev, sets: url }));
+}
 
 
 
 const Sets = (props) => {
 
-    const setSets = props.setSets
-    const sets = props.sets
+    const setUrlSets = props.setUrlSets
+    
+    const [sets, setSets] = useState([])
     
     useEffect(() => {
 
@@ -25,6 +52,7 @@ const Sets = (props) => {
                             card_count: set.card_count,
                             image: set.icon_svg_uri,
                             id: set.id,
+                            code: set.code,
                         }
                         setSets(prevSets => ([...prevSets, objSet]))
                     }
@@ -46,6 +74,7 @@ const Sets = (props) => {
                 maxTagTextLength={10}
                 allowClear
                 style={{ width: '100%', background: '#EBE3D5' }}
+                onChange={(selectedValues) => formUrlSets(selectedValues, sets, setUrlSets)}
             >
                 {
             sets.map(set => {

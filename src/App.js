@@ -11,7 +11,7 @@ function App() {
         <div className='App'>
             <Header onSearch={setCards} setLoading={setLoading} />
             <div className='bottom'>
-                <Selector onSearch={setCards} setLoading={setLoading}/>
+                <Selector setCards={setCards} setLoading={setLoading}/>
                 <Cards data={cards} loading={loading} />
             </div>
         </div>
