@@ -31,11 +31,11 @@ const Selector = (props) => {
         <div className='Selector'>
             <h2>Products Filter</h2>
             <Button style={{backgroundColor:"Brown"}} onClick={() => findCards(url, urlArr, setCards, setLoading)}>Search</Button>
-            <Input setUrlSets={setUrlArr}/>
-            <Value setUrlSets={setUrlArr}/>
-            <Sets setUrlSets={setUrlArr}/>
-            <Colors setUrlSets={setUrlArr}/>
-            <Types setUrlSets={setUrlArr}/>
+            <Input setUrlArr={setUrlArr}/>
+            <Value setUrlArr={setUrlArr}/>
+            <Sets setUrlArr={setUrlArr}/>
+            <Colors setUrlArr={setUrlArr}/>
+            <Types setUrlArr={setUrlArr}/>
         </div>
     );
 }

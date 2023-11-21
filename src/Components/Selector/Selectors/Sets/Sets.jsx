@@ -7,7 +7,7 @@ import SetSelectElement from './SetSelectElement';
 
 function formUrlSets(curSets, sets, setUrlSets) {
     if (curSets.length === 0) {
-        setUrlSets('')
+        setUrlSets(prev => ({ ...prev, sets: '' }));
         return
     };
 
@@ -37,7 +37,7 @@ function formUrlSets(curSets, sets, setUrlSets) {
 
 const Sets = (props) => {
 
-    const setUrlSets = props.setUrlSets
+    const setUrlSets = props.setUrlArr
     
     const [sets, setSets] = useState([])
     
