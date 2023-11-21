@@ -6,13 +6,17 @@ import Types from './Selectors/Types/Types.jsx';
 import Value from './Selectors/Value/Value';
 import { Button, Input } from 'antd';
 import findCards from '../../Functions/findCards';
+import { useNavigate } from 'react-router-dom';
 
 const Selector = (props) => {
+
+    const navigate = useNavigate()
 
     const setCards = props.setCards
     const setLoading = props.setLoading
 
     const [url, addUrl] = useState('https://api.scryfall.com/cards/search?order=usd')
+    const [link, setLink] = useState('')
 
     const [urlArr, setUrlArr] = useState({
         name:'',
@@ -24,13 +28,15 @@ const Selector = (props) => {
     })
 
     useEffect(() => {
+
         console.log(urlArr)
+        
     }, [urlArr])
 
     return (
         <div className='Selector'>
             <h2>Products Filter</h2>
-            <Button style={{backgroundColor:"Brown"}} onClick={() => findCards(url, urlArr, setCards, setLoading)}>Search</Button>
+            <Button style={{backgroundColor:"Brown"}} onClick={() => findCards(url, urlArr, setCards, setLoading, navigate)}>Search</Button>
             <Input setUrlArr={setUrlArr}/>
             <Value setUrlArr={setUrlArr}/>
             <Sets setUrlArr={setUrlArr}/>

@@ -2,6 +2,7 @@ import { Select } from "antd";
 import colorImages from "./colorImages";
 import combinations from "./combinations";
 import './Colors.css'
+import { useState } from "react";
 
 function formUrlColors(curColors, setUrlArr) {
 
@@ -16,6 +17,8 @@ function formUrlColors(curColors, setUrlArr) {
 const Colors = (props) => {
 
     const setUrlArr = props.setUrlArr
+
+    let [selectedValue, setSelectedValue] = useState('')
 
     return (
         <div className='Colors'>

@@ -1,7 +1,8 @@
 import axios from "axios";
 import { defaultCards } from "./defaultCards";
+import { useNavigate } from "react-router-dom";
 
-function findCards(url, urlArr, setCards, setLoading) {
+function findCards(url, urlArr, setCards, setLoading, navigate) {
     let newUrl = url;
 
     for (let el in urlArr) {
@@ -14,6 +15,18 @@ function findCards(url, urlArr, setCards, setLoading) {
     }
 
     console.log(newUrl)
+
+    let link = ''
+
+    const searchParams = new URLSearchParams(urlArr)
+    const paramsIterator = searchParams.entries()
+    const paramsArray = Array.from(paramsIterator)
+    paramsArray.forEach(arr => {
+        if(arr[1]) {
+            link+=arr[1]
+        }
+    })
+    navigate(`mtg-market-react/shop/${link}`)
 
     try {
         setLoading(true);
