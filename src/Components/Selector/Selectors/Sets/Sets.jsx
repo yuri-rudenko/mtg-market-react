@@ -10,6 +10,7 @@ function formUrlSets(curSets, sets, setUrlSets) {
         setUrlSets(prev => ({ ...prev, sets: '' }))
         return
     };
+    
 
     let codes = []
     let url = ''

@@ -3,11 +3,14 @@ import './Header.css'
 import { Input, Space } from 'antd';
 import axios from 'axios';
 import { defaultCards } from '../../Functions/defaultCards';
+import { useNavigate } from 'react-router-dom';
 
 const Header = (props) => {
 
     const setCards = props.onSearch
     const setLoading = props.setLoading
+
+    const navigate = useNavigate()
 
     function onSearch(value) {
         let newVal = value.replace(/[\s]+$/, '').replace(/ {2,}/g, '+')
@@ -15,8 +18,8 @@ const Header = (props) => {
     }
 
     async function setDefault() {
+        navigate('/mtg-market-react/shop')
         const cardsData = await defaultCards();
-
         setCards(cardsData);
     }
 

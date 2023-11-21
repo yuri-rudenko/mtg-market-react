@@ -26,7 +26,7 @@ function findCards(url, urlArr, setCards, setLoading, navigate) {
             link+=arr[1]
         }
     })
-    navigate(`mtg-market-react/shop/${link}`)
+    navigate(`${link}`)
 
     try {
         setLoading(true);

@@ -6,7 +6,7 @@ import Types from './Selectors/Types/Types.jsx';
 import Value from './Selectors/Value/Value';
 import { Button, Input } from 'antd';
 import findCards from '../../Functions/findCards';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const Selector = (props) => {
 
@@ -14,6 +14,8 @@ const Selector = (props) => {
 
     const setCards = props.setCards
     const setLoading = props.setLoading
+
+    let params = useParams()
 
     const [url, addUrl] = useState('https://api.scryfall.com/cards/search?order=usd')
     const [link, setLink] = useState('')
