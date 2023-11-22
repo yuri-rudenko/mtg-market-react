@@ -15,27 +15,9 @@ const Cards = (props) => {
         if(card.prices.usd_etched !== null) return `${Math.floor(card.prices.usd_etched * dollar * 100)/100} ₴`
         else return `-`
     }
-      
-    let course = 36
 
     const loading = props.loading
-
-    useEffect(() => {
-
-        async function getCourse() {
-            try {
-                course = (await axios.get('https://bank.gov.ua/NBUStatService/v1/statdirectory/dollar_info?json')).data[0].rate
-                console.log(course)
-            }
-            
-            catch(error) {
-              console.error('Error fetching data:', error)
-            }
-        }
-
-        getCourse()
-    })
-    
+    const course = props.course
     const cards = props.data
 
     console.log(cards)

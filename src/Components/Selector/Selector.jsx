@@ -7,6 +7,7 @@ import Value from './Selectors/Value/Value';
 import { Button, Input } from 'antd';
 import findCards from '../../Functions/findCards';
 import { useNavigate, useParams } from 'react-router-dom';
+import Name from './Selectors/Name/Name';
 
 const Selector = (props) => {
 
@@ -39,8 +40,8 @@ const Selector = (props) => {
         <div className='Selector'>
             <h2>Products Filter</h2>
             <Button style={{backgroundColor:"Brown"}} onClick={() => findCards(url, urlArr, setCards, setLoading, navigate)}>Search</Button>
-            <Input setUrlArr={setUrlArr}/>
-            <Value setUrlArr={setUrlArr}/>
+            <Name setUrlArr={setUrlArr}/>
+            <Value setUrlArr={setUrlArr} course={props.course}/>
             <Sets setUrlArr={setUrlArr}/>
             <Colors setUrlArr={setUrlArr}/>
             <Types setUrlArr={setUrlArr}/>

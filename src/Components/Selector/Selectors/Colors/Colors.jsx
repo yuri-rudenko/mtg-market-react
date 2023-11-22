@@ -7,11 +7,11 @@ import { useState } from "react";
 function formUrlColors(curColors, setUrlArr) {
 
     if (curColors === '') {
-        setUrlArr(prev => ({ ...prev, colors: '' }));   
+        setUrlArr(prev => ({ ...prev, value: '' }));   
         return
     }
 
-    setUrlArr(prev => ({ ...prev, colors: `c=${curColors}+` }));
+    setUrlArr(prev => ({ ...prev, value: `c=${curColors}+` }));
 }
 
 const Colors = (props) => {
