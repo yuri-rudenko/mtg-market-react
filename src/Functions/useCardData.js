@@ -10,9 +10,6 @@ export function useCardData() {
             try {
                 setLoading(true);
 
-                const cardsData = await defaultCards();
-
-                setCards(cardsData);
             } catch (error) {
                 console.error('Error fetching data:', error);
             } finally {

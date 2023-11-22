@@ -6,19 +6,17 @@ import { useState } from "react";
 
 function formUrlColors(curColors, setUrlArr) {
 
-    if (curColors === '') {
-        setUrlArr(prev => ({ ...prev, value: '' }));   
+    if (!curColors) {
+        setUrlArr(prev => ({ ...prev, colors: '' }));   
         return
     }
 
-    setUrlArr(prev => ({ ...prev, value: `c=${curColors}+` }));
+    setUrlArr(prev => ({ ...prev, colors: `c=${curColors}+` }));
 }
 
 const Colors = (props) => {
 
     const setUrlArr = props.setUrlArr
-
-    let [selectedValue, setSelectedValue] = useState('')
 
     return (
         <div className='Colors'>

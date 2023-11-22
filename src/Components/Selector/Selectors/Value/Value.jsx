@@ -4,7 +4,7 @@ import { Slider } from 'antd';
 function formUrlColors(curValue, setUrlArr, course) {
 
     if (curValue === '') {
-        setUrlArr(prev => ({ ...prev, colors: '' }))
+        setUrlArr(prev => ({ ...prev, value: '' }))
         return
     }
 
@@ -13,7 +13,7 @@ function formUrlColors(curValue, setUrlArr, course) {
     if(curValue[0] !== 0) url += `usd>=${Math.floor(curValue[0]/course * 1000)/1000}+`
     if(curValue[1] !== 20000) url += `usd<=${Math.floor(curValue[1]/course * 1000)/1000}+`
     
-    setUrlArr(prev => ({ ...prev, colors: `${url}` }))
+    setUrlArr(prev => ({ ...prev, value: `${url}` }))
 }
 
 const MySlider = (props) => {

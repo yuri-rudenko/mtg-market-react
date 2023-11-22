@@ -4,10 +4,11 @@ import Sets from './Selectors/Sets/Sets';
 import Colors from './Selectors/Colors/Colors';
 import Types from './Selectors/Types/Types.jsx';
 import Value from './Selectors/Value/Value';
-import { Button, Input } from 'antd';
+import { Button} from 'antd';
 import findCards from '../../Functions/findCards';
 import { useNavigate, useParams } from 'react-router-dom';
 import Name from './Selectors/Name/Name';
+import createLink from '../../Functions/createLink';
 
 const Selector = (props) => {
 
@@ -15,8 +16,6 @@ const Selector = (props) => {
 
     const setCards = props.setCards
     const setLoading = props.setLoading
-
-    let params = useParams()
 
     const [url, addUrl] = useState('https://api.scryfall.com/cards/search?order=usd')
     const [link, setLink] = useState('')
@@ -30,16 +29,25 @@ const Selector = (props) => {
         subtypes:''
     })
 
+    const params = useParams()['*']
+
+    useEffect(() => {
+
+        console.log(999, params)
+        findCards(params, setCards, setLoading)
+
+    }, [url])
+
     useEffect(() => {
 
         console.log(urlArr)
-        
+
     }, [urlArr])
 
     return (
         <div className='Selector'>
             <h2>Products Filter</h2>
-            <Button style={{backgroundColor:"Brown"}} onClick={() => findCards(url, urlArr, setCards, setLoading, navigate)}>Search</Button>
+            <Button style={{backgroundColor:"Brown"}} onClick={() => {createLink(url, addUrl, urlArr, navigate)}}>Search</Button>
             <Name setUrlArr={setUrlArr}/>
             <Value setUrlArr={setUrlArr} course={props.course}/>
             <Sets setUrlArr={setUrlArr}/>
@@ -50,5 +58,3 @@ const Selector = (props) => {
 }
 
 export default Selector;
-
-
