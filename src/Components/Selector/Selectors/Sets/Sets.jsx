@@ -6,6 +6,7 @@ import axios from 'axios';
 import SetSelectElement from './SetSelectElement';
 
 function formUrlSets(curSets, sets, setUrlSets) {
+
     if (curSets.length === 0) {
         setUrlSets(prev => ({ ...prev, sets: '' }))
         return
@@ -24,13 +25,10 @@ function formUrlSets(curSets, sets, setUrlSets) {
     }
     
     for(let i = 0; i<codes.length; i++) {
-        if(i === 0 && codes.length>1) url+='('
+        if(i === 0) url+='('
         url += `e:${codes[i]}`
         if(i < codes.length-1)url += `+or+`
-        if(i === codes.length-1) {
-            if(codes.length>1) url += `)`
-            url += `+`
-        }
+        if(i === codes.length-1) url += `)+`
     }
 
     setUrlSets(prev => ({ ...prev, sets: url }));

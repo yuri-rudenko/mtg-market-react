@@ -51,7 +51,7 @@ const Selector = (props) => {
             <Name setUrlArr={setUrlArr}/>
             <Value setUrlArr={setUrlArr} course={props.course}/>
             <Sets setUrlArr={setUrlArr}/>
-            <Colors setUrlArr={setUrlArr}/>
+            <Colors setUrlArr={setUrlArr} params={params}/>
             <Types setUrlArr={setUrlArr}/>
         </div>
     );
