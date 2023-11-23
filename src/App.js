@@ -16,7 +16,7 @@ function App() {
             <div className='App'>
                 <Header onSearch={setCards} setLoading={setLoading} />
                 <Routes>
-                    <Route path='mtg-market-react/shop/*' element={
+                    <Route path='/shop/*' element={
                         <div className='bottom'>
                             <Selector setCards={setCards} setLoading={setLoading} course={course}/>
                             <Cards data={cards} loading={loading} course={course}/>
