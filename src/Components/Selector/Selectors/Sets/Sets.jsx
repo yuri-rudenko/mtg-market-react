@@ -12,23 +12,15 @@ function formUrlSets(curSets, sets, setUrlSets) {
         return
     };
     
-
-    let codes = []
-    let url = ''
-
-    for (let setName of curSets) {
-        const set = sets.find(element => element.name === setName)
-
-        if (set && set.code) {
-            codes.push(set.code);
-        }
-    }
+    console.log(curSets, 'Cursets')
     
-    for(let i = 0; i<codes.length; i++) {
+    let url = ''
+    
+    for(let i = 0; i<curSets.length; i++) {
         if(i === 0) url+='('
-        url += `e:${codes[i]}`
-        if(i < codes.length-1)url += `+or+`
-        if(i === codes.length-1) url += `)+`
+        url += `e:${curSets[i]}`
+        if(i < curSets.length-1)url += `+or+`
+        if(i === curSets.length-1) url += `)+`
     }
 
     setUrlSets(prev => ({ ...prev, sets: url }));
@@ -39,6 +31,7 @@ function formUrlSets(curSets, sets, setUrlSets) {
 const Sets = (props) => {
 
     const setUrlSets = props.setUrlArr
+    const params = props.params
     
     const [sets, setSets] = useState([])
     
@@ -79,7 +72,7 @@ const Sets = (props) => {
             >
                 {
             sets.map(set => {
-                return <Select.Option key={set.id} value={set.name}><SetSelectElement set={set}/></Select.Option>
+                return <Select.Option key={set.id} value={set.code}><SetSelectElement set={set}/></Select.Option>
             })
                 }
         </Select>

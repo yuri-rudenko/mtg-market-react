@@ -28,7 +28,7 @@ const Colors = (props) => {
     const params = props.params
     const setUrlArr = props.setUrlArr
   
-    const [selectedColors, setSelectedColors] = useState([])
+    const [selected, setSelected] = useState([])
   
     useEffect(() => {
   
@@ -53,14 +53,13 @@ const Colors = (props) => {
         name: combinations.find((element) => element.code === color.code)?.name || 'Unknown',
       }))
   
-      setSelectedColors(updatedColors)
+      setSelected(updatedColors)
   
-      console.log(updatedColors, 'RES')
     }, [params, setUrlArr])
   
     const handleChange = (value) => {
       formUrlColors(value, setUrlArr)
-      setSelectedColors(value.map((code) => ({ code })))
+      setSelected(value.map((code) => ({ code })))
     }
   
     return (
@@ -74,7 +73,7 @@ const Colors = (props) => {
           allowClear
           style={{ width: '100%', background: '#EBE3D5' }}
           onChange={handleChange}
-          value={selectedColors.map((combination) => combination.code)}
+          value={selected.map((combination) => combination.code)}
         >
           {combinations.map((combination) => (
             <Select.Option key={combination.code} value={combination.code}>
