@@ -12,7 +12,7 @@ function App() {
     const course = getCourse()
 
     return (
-        <Router>
+        <Router basename="/mtg-market-react">
             <div className='App'>
                 <Header onSearch={setCards} setLoading={setLoading} />
                 <Routes>
