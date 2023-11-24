@@ -48,11 +48,11 @@ const Selector = (props) => {
         <div className='Selector'>
             <h2>Products Filter</h2>
             <Button style={{backgroundColor:"Brown"}} onClick={() => {createLink(url, addUrl, urlArr, navigate)}}>Search</Button>
-            <Name setUrlArr={setUrlArr}/>
-            <Value setUrlArr={setUrlArr} course={props.course}/>
-            <Sets setUrlArr={setUrlArr}/>
+            <Name setUrlArr={setUrlArr} params={params}/>
+            <Value setUrlArr={setUrlArr} course={props.course} params={params}/>
+            <Sets setUrlArr={setUrlArr} params={params}/>
             <Colors setUrlArr={setUrlArr} params={params}/>
-            <Types setUrlArr={setUrlArr}/>
+            <Types setUrlArr={setUrlArr} params={params}/>
         </div>
     );
 }

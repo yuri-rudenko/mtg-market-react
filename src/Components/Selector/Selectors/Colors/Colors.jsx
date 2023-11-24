@@ -25,6 +25,7 @@ function formUrlColors(curColors, setUrlArr) {
 }
 
 const Colors = (props) => {
+  
     const params = props.params
     const setUrlArr = props.setUrlArr
   
@@ -53,7 +54,10 @@ const Colors = (props) => {
         name: combinations.find((element) => element.code === color.code)?.name || 'Unknown',
       }))
   
+      console.log('COLORS', updatedColors)
+      formUrlColors(updatedColors.map(color => color.code), setUrlArr)
       setSelected(updatedColors)
+      /// formUrlColors(value, setUrlArr)
   
     }, [params, setUrlArr])
   

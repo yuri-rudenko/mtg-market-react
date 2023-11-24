@@ -5,14 +5,12 @@ import { checkBadSets } from '../../../../Functions/checkBadSets';
 import axios from 'axios';
 import SetSelectElement from './SetSelectElement';
 
-function formUrlSets(curSets, sets, setUrlSets) {
+function formUrlSets(curSets, setUrlArr) {
 
     if (curSets.length === 0) {
-        setUrlSets(prev => ({ ...prev, sets: '' }))
+        setUrlArr(prev => ({ ...prev, sets: '' }))
         return
     };
-    
-    console.log(curSets, 'Cursets')
     
     let url = ''
     
@@ -23,17 +21,18 @@ function formUrlSets(curSets, sets, setUrlSets) {
         if(i === curSets.length-1) url += `)+`
     }
 
-    setUrlSets(prev => ({ ...prev, sets: url }));
+    setUrlArr(prev => ({ ...prev, sets: url }));
 }
 
 
 
 const Sets = (props) => {
 
-    const setUrlSets = props.setUrlArr
+    const setUrlArr = props.setUrlArr
     const params = props.params
     
     const [sets, setSets] = useState([])
+    const [selected, setSelected] = useState([])
     
     useEffect(() => {
 
@@ -59,6 +58,35 @@ const Sets = (props) => {
 
     }, [])
 
+    useEffect(() => {
+  
+        const sets = []
+        let i = params.indexOf('e:')
+    
+        while (i !== -1) {
+          let ident = '';
+          let find = i + 2
+    
+          while (params[find] !== '+' && params[find] !== ')') {
+            ident += params[find]
+            find++;
+          }
+    
+          sets.push(ident)
+          i = params.indexOf('e:', i + 1)
+        }
+        
+        setSelected(sets)
+        formUrlSets(sets, setUrlArr)
+
+    
+    }, [params, setUrlArr])
+
+    const handleChange = (value) => {
+        formUrlSets(value, setUrlArr)
+        setSelected(value)
+      }
+
     return (
         <Select
                 mode="multiple"
@@ -68,7 +96,8 @@ const Sets = (props) => {
                 maxTagTextLength={10}
                 allowClear
                 style={{ width: '100%', background: '#EBE3D5' }}
-                onChange={(selectedValues) => formUrlSets(selectedValues, sets, setUrlSets)}
+                onChange={handleChange}
+                value={selected}
             >
                 {
             sets.map(set => {
