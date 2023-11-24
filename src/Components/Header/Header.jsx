@@ -18,7 +18,7 @@ const Header = (props) => {
     }
 
     async function setDefault() {
-        navigate('/mtg-market-react/shop')
+        navigate('/shop')
         const cardsData = await defaultCards();
         setCards(cardsData);
     }
