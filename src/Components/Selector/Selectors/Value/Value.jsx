@@ -1,9 +1,17 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Input, Slider } from 'antd';
 import './Value.css'
 
-function formUrlColors(curValue, setUrlArr, course) {
+function toHryvnas(value, course) {
+    return Math.floor(value*course * 1000)/1000
+}
+function toDollars(value, course) {
+    return
+}
 
+function formUrlValue(curValue, setUrlArr, course) {
+
+    console.log('CURVALUE', curValue)
     if (curValue === '') {
         setUrlArr(prev => ({ ...prev, value: '' }))
         return
@@ -18,11 +26,51 @@ function formUrlColors(curValue, setUrlArr, course) {
 }
 
 const MySlider = (props) => {
-
+    
+    const params = props.params
+    const course = props.course
     const setUrlArr = props.setUrlArr
 
+    const [selected, setSelected] = useState([0, 5000])
+
+    useEffect(() => {
+
+        const iLowest = params.indexOf('usd>=')
+        const iHighest = params.indexOf('usd<=')
+
+        let lowest = ''
+        let highest = ''
+
+        if(iLowest !== -1) {
+            let i = iLowest+5
+            while(params[i] !== '+') {
+                lowest += params[i]
+                i++
+            }
+        }
+        if(iHighest !== -1) {
+            let i = iHighest+5
+            while(params[i] !== '+') {
+                highest += params[i]
+                i++
+            }
+        }
+
+        console.log('LOWHIGH', lowest, highest, toHryvnas(lowest, course), toHryvnas(highest, course))
+
+        if(lowest === '') lowest = 0
+        if(highest === '') highest = 5000/course
+
+        formUrlValue([toHryvnas(lowest, course), toHryvnas(highest, course)], setUrlArr, course)
+        setSelected([toHryvnas(lowest, course), toHryvnas(highest, course)])
+    
+    }, [params, setUrlArr, course])
+
     const handleChange = (value) => {
-        console.log('Slider Value:', value)
+
+        formUrlValue(value, setUrlArr, course)
+        setSelected(value)
+        
     }
 
     const formatter = (value) => {
@@ -39,7 +87,8 @@ const MySlider = (props) => {
                 step={10}
                 tooltip={{ formatter }}
                 defaultValue={[0, 5000]}
-                onChange={(value) => formUrlColors(value, setUrlArr, props.course)}
+                value={selected}
+                onChange={handleChange}
             />
         </div>
     );

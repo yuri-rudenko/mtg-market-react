@@ -37,7 +37,6 @@ const Colors = (props) => {
     useEffect(() => {
 
       const colors = parseLink(params, 'c', '=')
-      console.log('COLORS', colors)
   
       formUrlColors(colors, setUrlArr)
       setSelected(colors)
