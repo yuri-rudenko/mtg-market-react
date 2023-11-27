@@ -1,8 +1,11 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import './Cards.css'
+import { useNavigate } from 'react-router-dom';
 
 const Cards = (props) => {
+
+  const navigate = useNavigate()
 
     function getImageSrc(card) {
         if(card.image_uris !== undefined) return card.image_uris.normal
@@ -28,7 +31,7 @@ const Cards = (props) => {
           <h1>Loading</h1>
         ) : (
           cards.map(card => (
-            <div className="card" key={card.id}>
+            <div className="card" key={card.id} onClick={() => navigate(`/${card.name}`)}>
               <img src={getImageSrc(card)} alt=""></img>
               <div className='text'>
                   <p className='cardName'>{card.name}</p>

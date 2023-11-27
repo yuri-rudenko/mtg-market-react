@@ -4,7 +4,7 @@ import Sets from './Selectors/Sets/Sets';
 import Colors from './Selectors/Colors/Colors';
 import Types from './Selectors/Types/Types.jsx';
 import Value from './Selectors/Value/Value';
-import { Button} from 'antd';
+import { Button } from 'antd';
 import findCards from '../../Functions/findCards';
 import { useNavigate, useParams } from 'react-router-dom';
 import Name from './Selectors/Name/Name';

@@ -41,6 +41,8 @@ function formUrlSubtypes(curSubtypes, setUrlArr) {
 const Types = (props) => {
 
     const setUrlArr = props.setUrlArr
+    const params = props.params
+    const [selected, setSelected] = useState([])
 
     const urls = [
         'https://api.scryfall.com/catalog/creature-types',
@@ -51,26 +53,55 @@ const Types = (props) => {
         'https://api.scryfall.com/catalog/spell-types',
     ]
 
-    const [subTypes, setSubTypes] = useState([]);
-
-useEffect(() => {
-    const requests = urls.map((url) => axios.get(url));
-
-    axios.all(requests)
-        .then((responses) => {
-            let newData = [];
-            responses.forEach((resp) => {
-                newData = [...newData, ...resp.data.data];
-            });
-
-            newData.sort();
-
-            setSubTypes(newData);
-        })
-        .catch(error => console.log(error))
-}, []);
+    const [subTypes, setSubTypes] = useState([])
 
 
+    useEffect(() => {
+        const requests = urls.map((url) => axios.get(url))
+
+        axios.all(requests)
+            .then((responses) => {
+                let newData = []
+                responses.forEach((resp) => {
+                    newData = [...newData, ...resp.data.data]
+                });
+
+                newData.sort()
+
+                setSubTypes(newData)
+            })
+            .catch(error => console.log(error))
+    }, [])
+
+    // useEffect(() => {
+  
+    //     const types = []
+    //     let i = params.indexOf('e:')
+    
+    //     while (i !== -1) {
+    //       let ident = '';
+    //       let find = i + 2
+    
+    //       while (params[find] !== '+' && params[find] !== ')') {
+    //         ident += params[find]
+    //         find++;
+    //       }
+    
+    //       types.push(ident)
+    //       i = params.indexOf('e:', i + 1)
+    //     }
+        
+    //     setSelected(types)
+    //     formUrlTypes(types, setUrlArr)
+    
+    // }, [params, setUrlArr])
+
+    const handleChange = (value) => {
+
+        formUrlTypes(value, setUrlArr)
+        setSelected(value)
+
+    }
 
     return (
         <div>

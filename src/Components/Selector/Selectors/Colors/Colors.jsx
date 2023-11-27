@@ -4,6 +4,7 @@ import combinations from "./combinations";
 import './Colors.css'
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { parseLink } from "../../SelectorFunctions/parseLink";
 
 function formUrlColors(curColors, setUrlArr) {
 
@@ -32,38 +33,19 @@ const Colors = (props) => {
     const [selected, setSelected] = useState([])
   
     useEffect(() => {
+
+      const colors = parseLink(params, 'c', true, '=')
+      console.log('COLORS', colors)
   
-      const colors = []
-      let i = params.indexOf('c=')
-  
-      while (i !== -1) {
-        let ident = '';
-        let find = i + 2
-  
-        while (params[find] !== '+' && params[find] !== ')') {
-          ident += params[find]
-          find++;
-        }
-  
-        colors.push({ code: ident })
-        i = params.indexOf('c=', i + 1)
-      }
-  
-      const updatedColors = colors.map((color) => ({
-        ...color,
-        name: combinations.find((element) => element.code === color.code)?.name || 'Unknown',
-      }))
-  
-      console.log('COLORS', updatedColors)
-      formUrlColors(updatedColors.map(color => color.code), setUrlArr)
-      setSelected(updatedColors)
+      formUrlColors(colors, setUrlArr)
+      setSelected(colors)
       /// formUrlColors(value, setUrlArr)
   
     }, [params, setUrlArr])
   
     const handleChange = (value) => {
       formUrlColors(value, setUrlArr)
-      setSelected(value.map((code) => ({ code })))
+      setSelected(value)
     }
   
     return (
@@ -77,7 +59,7 @@ const Colors = (props) => {
           allowClear
           style={{ width: '100%', background: '#EBE3D5' }}
           onChange={handleChange}
-          value={selected.map((combination) => combination.code)}
+          value={selected}
         >
           {combinations.map((combination) => (
             <Select.Option key={combination.code} value={combination.code}>

@@ -4,6 +4,7 @@ import { Select } from 'antd';
 import { checkBadSets } from '../../../../Functions/checkBadSets';
 import axios from 'axios';
 import SetSelectElement from './SetSelectElement';
+import { parseLink } from '../../SelectorFunctions/parseLink';
 
 function formUrlSets(curSets, setUrlArr) {
 
@@ -60,32 +61,17 @@ const Sets = (props) => {
 
     useEffect(() => {
   
-        const sets = []
-        let i = params.indexOf('e:')
-    
-        while (i !== -1) {
-          let ident = '';
-          let find = i + 2
-    
-          while (params[find] !== '+' && params[find] !== ')') {
-            ident += params[find]
-            find++;
-          }
-    
-          sets.push(ident)
-          i = params.indexOf('e:', i + 1)
-        }
+        const sets = parseLink(params, 'e', true, ':')
         
         setSelected(sets)
         formUrlSets(sets, setUrlArr)
-
     
     }, [params, setUrlArr])
 
     const handleChange = (value) => {
         formUrlSets(value, setUrlArr)
         setSelected(value)
-      }
+    }
 
     return (
         <Select
