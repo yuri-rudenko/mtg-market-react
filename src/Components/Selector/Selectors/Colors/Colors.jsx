@@ -16,7 +16,7 @@ function formUrlColors(curColors, setUrlArr) {
 
     for(let i = 0; i<curColors.length; i++) {
 
-        if(curColors[i] == '5 Color') curColors[i] = 'wubrg'
+        // if(curColors[i] == '5 Color') curColors[i] = 'wubrg'
 
         if(i === 0) url+='('
         url += `c=${curColors[i]}`
@@ -36,7 +36,7 @@ const Colors = (props) => {
   
     useEffect(() => {
 
-      const colors = parseLink(params, 'c', '=')
+      const colors = parseLink(params, 'c', '=').map(col => col.code)
   
       formUrlColors(colors, setUrlArr)
       setSelected(colors)
@@ -65,7 +65,7 @@ const Colors = (props) => {
           value={selected}
         >
           {combinations.map((combination) => (
-            <Select.Option key={combination.code} value={combination.name}>
+            <Select.Option key={combination.code} value={combination.code}>
               <div className="colorOption">
                 {combination.code.split('').map((colorChar) => (
                   <img

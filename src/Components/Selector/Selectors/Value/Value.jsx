@@ -5,13 +5,9 @@ import './Value.css'
 function toHryvnas(value, course) {
     return Math.floor(value*course * 1000)/1000
 }
-function toDollars(value, course) {
-    return
-}
 
 function formUrlValue(curValue, setUrlArr, course) {
 
-    console.log('CURVALUE', curValue)
     if (curValue === '') {
         setUrlArr(prev => ({ ...prev, value: '' }))
         return
@@ -55,8 +51,6 @@ const MySlider = (props) => {
                 i++
             }
         }
-
-        console.log('LOWHIGH', lowest, highest, toHryvnas(lowest, course), toHryvnas(highest, course))
 
         if(lowest === '') lowest = 0
         if(highest === '') highest = 5000/course

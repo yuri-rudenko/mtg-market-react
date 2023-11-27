@@ -27,8 +27,6 @@ function formUrlSets(curSetsFull, setUrlArr) {
     setUrlArr(prev => ({ ...prev, sets: url }));
 }
 
-
-
 const Sets = (props) => {
 
     const setUrlArr = props.setUrlArr
@@ -70,6 +68,10 @@ const Sets = (props) => {
     
             setSelected(parsedSets);
             formUrlSets(parsedSets, setUrlArr)
+        }
+        else {
+            setSelected([]);
+            formUrlSets([], setUrlArr)
         }
     }, [params, setUrlArr, sets])
 

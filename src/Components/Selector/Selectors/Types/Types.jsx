@@ -77,7 +77,7 @@ const Types = (props) => {
 
     useEffect(() => {
   
-        const all = parseLink(params, 't', ':')
+        const all = parseLink(params, 't', ':').map(el => el.code)
         const curTypes = []
         const curSubtypes = []
 
