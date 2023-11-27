@@ -2,6 +2,7 @@ import { Select } from 'antd';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import types from './types';
+import { parseLink } from '../../SelectorFunctions/parseLink';
 
 types.sort()
 
@@ -43,6 +44,7 @@ const Types = (props) => {
     const setUrlArr = props.setUrlArr
     const params = props.params
     const [selected, setSelected] = useState([])
+    const [selectedSub, setSelectedSub] = useState([])
 
     const urls = [
         'https://api.scryfall.com/catalog/creature-types',
@@ -73,33 +75,38 @@ const Types = (props) => {
             .catch(error => console.log(error))
     }, [])
 
-    // useEffect(() => {
+    useEffect(() => {
   
-    //     const types = []
-    //     let i = params.indexOf('e:')
-    
-    //     while (i !== -1) {
-    //       let ident = '';
-    //       let find = i + 2
-    
-    //       while (params[find] !== '+' && params[find] !== ')') {
-    //         ident += params[find]
-    //         find++;
-    //       }
-    
-    //       types.push(ident)
-    //       i = params.indexOf('e:', i + 1)
-    //     }
+        const all = parseLink(params, 't', true, ':')
+        const curTypes = []
+        const curSubtypes = []
+
+        all.forEach(el => {
+            if (types.includes(el)) {
+                curTypes.push(el)
+            } else {
+                curSubtypes.push(el)
+            }
+        })
         
-    //     setSelected(types)
-    //     formUrlTypes(types, setUrlArr)
+        setSelected(curTypes)
+        formUrlTypes(curTypes, setUrlArr)
+
+        setSelectedSub(curSubtypes)
+        formUrlSubtypes(curSubtypes, setUrlArr)
     
-    // }, [params, setUrlArr])
+    }, [params, setUrlArr])
 
     const handleChange = (value) => {
 
         formUrlTypes(value, setUrlArr)
         setSelected(value)
+
+    }
+    const handleChangeSub = (value) => {
+
+        formUrlSubtypes(value, setUrlArr)
+        setSelectedSub(value)
 
     }
 
@@ -113,7 +120,8 @@ const Types = (props) => {
                         maxTagCount={3}
                         allowClear
                         style={{ width: '100%', background: '#EBE3D5' }}
-                        onChange={(elements) => formUrlTypes(elements, setUrlArr)}
+                        onChange={handleChange}
+                        value={selected}
                     >
                         {
                     types.map(type => {
@@ -130,7 +138,8 @@ const Types = (props) => {
                         maxTagCount={3}
                         allowClear
                         style={{ width: '100%', background: '#EBE3D5' }}
-                        onChange={(elements) => formUrlSubtypes(elements, setUrlArr)}
+                        onChange={handleChangeSub}
+                        value={selectedSub}
                     >
                         {
                     subTypes.map(subtype => {
