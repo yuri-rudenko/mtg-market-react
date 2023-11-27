@@ -3,7 +3,6 @@ import colorImages from "./colorImages";
 import combinations from "./combinations";
 import './Colors.css'
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import { parseLink } from "../../SelectorFunctions/parseLink";
 
 function formUrlColors(curColors, setUrlArr) {
@@ -16,6 +15,9 @@ function formUrlColors(curColors, setUrlArr) {
     let url = ''
 
     for(let i = 0; i<curColors.length; i++) {
+
+        if(curColors[i] == '5 Color') curColors[i] = 'wubrg'
+
         if(i === 0) url+='('
         url += `c=${curColors[i]}`
         if(i < curColors.length-1)url += `+or+`
@@ -34,18 +36,20 @@ const Colors = (props) => {
   
     useEffect(() => {
 
-      const colors = parseLink(params, 'c', true, '=')
+      const colors = parseLink(params, 'c', '=')
       console.log('COLORS', colors)
   
       formUrlColors(colors, setUrlArr)
       setSelected(colors)
-      /// formUrlColors(value, setUrlArr)
   
     }, [params, setUrlArr])
-  
+
+
     const handleChange = (value) => {
+
       formUrlColors(value, setUrlArr)
       setSelected(value)
+      
     }
   
     return (
@@ -62,7 +66,7 @@ const Colors = (props) => {
           value={selected}
         >
           {combinations.map((combination) => (
-            <Select.Option key={combination.code} value={combination.code}>
+            <Select.Option key={combination.code} value={combination.name}>
               <div className="colorOption">
                 {combination.code.split('').map((colorChar) => (
                   <img

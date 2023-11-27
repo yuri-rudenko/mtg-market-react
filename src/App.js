@@ -18,7 +18,7 @@ function App() {
                 <Routes>
                     <Route path='/shop/*' element={
                         <div className='bottom'>
-                            <Selector setCards={setCards} setLoading={setLoading} course={course}/>
+                            <Selector cards={cards} setCards={setCards} setLoading={setLoading} course={course}/>
                             <Cards data={cards} loading={loading} course={course}/>
                         </div>
                     } />

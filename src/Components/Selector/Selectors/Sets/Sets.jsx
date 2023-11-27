@@ -6,7 +6,9 @@ import axios from 'axios';
 import SetSelectElement from './SetSelectElement';
 import { parseLink } from '../../SelectorFunctions/parseLink';
 
-function formUrlSets(curSets, setUrlArr) {
+function formUrlSets(curSetsFull, setUrlArr) {
+
+    const curSets = curSetsFull.map(el => (el.code))
 
     if (curSets.length === 0) {
         setUrlArr(prev => ({ ...prev, sets: '' }))
@@ -37,40 +39,54 @@ const Sets = (props) => {
     
     useEffect(() => {
 
-        axios.get('https://api.scryfall.com/sets')
-            .then(response => {
-                response.data.data.forEach(set => {
-                    if(checkBadSets(set)) {
-                        let objSet = {
-                            name: set.name,
-                            card_count: set.card_count,
-                            image: set.icon_svg_uri,
-                            id: set.id,
-                            code: set.code,
-                        }
-                        setSets(prevSets => ([...prevSets, objSet]))
-                    }
-                })
-            })
-            .catch(error => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get('https://api.scryfall.com/sets')
+                const newSets = response.data.data.filter(set => checkBadSets(set)).map(set => ({
+                    name: set.name,
+                    card_count: set.card_count,
+                    image: set.icon_svg_uri,
+                    id: set.id,
+                    code: set.code,
+                }));
+                setSets(prevSets => [...prevSets, ...newSets])
+            } catch (error) {
                 console.log(error)
-            })
-            .finally(console.log(sets, 222))
-
-    }, [])
-
-    useEffect(() => {
-  
-        const sets = parseLink(params, 'e', true, ':')
-        
-        setSelected(sets)
-        formUrlSets(sets, setUrlArr)
+            }
+        };
     
-    }, [params, setUrlArr])
+        fetchData()
+    }, []); 
+    
+    useEffect(() => {
+        const parsedSets = parseLink(params, 'e', ':');
+    
+        if (sets.length > 0 && parsedSets.length > 0) {
+
+            for (let set of parsedSets) {
+                const foundSet = sets.find(el => el.code === set.code)
+                if (foundSet) set.name = foundSet.name
+            }
+    
+            setSelected(parsedSets);
+            formUrlSets(parsedSets, setUrlArr)
+        }
+    }, [params, setUrlArr, sets])
 
     const handleChange = (value) => {
-        formUrlSets(value, setUrlArr)
-        setSelected(value)
+
+        const newVal = value.map(val => ({name: val}))
+
+        for(let set of newVal) {
+
+            const foundSet = sets.find(el => el.name === set.name)
+            if(foundSet) set.code = foundSet.code
+
+        }
+
+        formUrlSets(newVal, setUrlArr)
+        setSelected(newVal)
+
     }
 
     return (
@@ -83,11 +99,11 @@ const Sets = (props) => {
                 allowClear
                 style={{ width: '100%', background: '#EBE3D5' }}
                 onChange={handleChange}
-                value={selected}
+                value={selected.map(el => (el.name))}
             >
                 {
             sets.map(set => {
-                return <Select.Option key={set.id} value={set.code}><SetSelectElement set={set}/></Select.Option>
+                return <Select.Option key={set.id} value={set.name}><SetSelectElement set={set}/></Select.Option>
             })
                 }
         </Select>
