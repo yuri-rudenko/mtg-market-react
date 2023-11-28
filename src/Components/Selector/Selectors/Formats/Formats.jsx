@@ -9,7 +9,7 @@ function formUrlFormats(curFormats, setUrlArr) {
     let url = ''
 
     if (curFormats.length === 0) {
-        setUrlArr(prev => ({ ...prev, types: '' }));   
+        setUrlArr(prev => ({ ...prev, formats: '' }));   
         return
     }
 

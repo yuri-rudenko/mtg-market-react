@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Input, Slider } from 'antd';
+import { Slider } from 'antd';
 import './Value.css'
 
 function toHryvnas(value, course) {

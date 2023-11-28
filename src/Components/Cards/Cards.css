@@ -21,6 +21,9 @@
 .Cards .card .text .cardName {
     text-align: center;
     font-size: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
 }
 .Cards .card .text .price {
     font-size: 20px;

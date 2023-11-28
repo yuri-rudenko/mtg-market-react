@@ -10,6 +10,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import Name from './Selectors/Name/Name';
 import createLink from '../../Functions/createLink';
 import Formats from './Selectors/Formats/Formats.jsx';
+import Manacost from './Selectors/Manacost/Manacost';
 
 const Selector = (props) => {
 
@@ -22,13 +23,15 @@ const Selector = (props) => {
     const [link, setLink] = useState('')
 
     const [urlArr, setUrlArr] = useState({
+        order: '',
         name:'',
         value:'',
         sets:'',
         colors:'',
         types:'',
         subtypes:'',
-        formats:''
+        formats:'',
+        value:''
     })
 
     const params = useParams()['*']
@@ -56,6 +59,7 @@ const Selector = (props) => {
             <Colors setUrlArr={setUrlArr} params={params}/>
             <Types setUrlArr={setUrlArr} params={params}/>
             <Formats setUrlArr={setUrlArr} params={params}/>
+            <Manacost setUrlArr={setUrlArr} params={params}/>
         </div>
     );
 }
