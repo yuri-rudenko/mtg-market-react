@@ -9,6 +9,7 @@ import findCards from '../../Functions/findCards';
 import { useNavigate, useParams } from 'react-router-dom';
 import Name from './Selectors/Name/Name';
 import createLink from '../../Functions/createLink';
+import Formats from './Selectors/Formats/Formats.jsx';
 
 const Selector = (props) => {
 
@@ -26,7 +27,8 @@ const Selector = (props) => {
         sets:'',
         colors:'',
         types:'',
-        subtypes:''
+        subtypes:'',
+        formats:''
     })
 
     const params = useParams()['*']
@@ -53,6 +55,7 @@ const Selector = (props) => {
             <Sets setUrlArr={setUrlArr} params={params}/>
             <Colors setUrlArr={setUrlArr} params={params}/>
             <Types setUrlArr={setUrlArr} params={params}/>
+            <Formats setUrlArr={setUrlArr} params={params}/>
         </div>
     );
 }

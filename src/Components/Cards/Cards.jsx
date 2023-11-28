@@ -31,8 +31,8 @@ const Cards = (props) => {
           <h1>Loading</h1>
         ) : (
           cards.map(card => (
-            <div className="card" key={card.id} onClick={() => navigate(`/${card.name}`)}>
-              <img src={getImageSrc(card)} alt=""></img>
+            <div className="card" key={card.id}>
+              <img src={getImageSrc(card)} alt="" onClick={() => navigate(`/${card.name}`)}></img>
               <div className='text'>
                   <p className='cardName'>{card.name}</p>
                   <p className="price">{getPrice(card, course)}</p>
