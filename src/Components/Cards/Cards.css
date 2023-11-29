@@ -1,33 +1,37 @@
-.Cards {
+.Cards .cards-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     padding-right: 10px;
     margin-top: 20px;
 }
-.Cards img {
+.Cards .cards-container img {
     height: 280px;
     border-radius: 10px;
 }
-.Cards h1 {
+.Cards .cards-container h1 {
     color: black;
 }
-.Cards .card {
+.Cards .cards-container .card {
     margin: 5px;
     padding: 5px;
     border-radius: 10px;
     max-width: 210px;
 }   
-.Cards .card .text .cardName {
+.Cards .cards-container .card .text .cardName {
     text-align: center;
     font-size: 20px;
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 200px;
 }
-.Cards .card .text .price {
+.Cards .cards-container .card .text .price {
     font-size: 20px;
     text-align: center;
     font-weight: bold;
     margin: 10px;
+}
+
+.sortingContainer {
+    max-width: fit-content;
 }
