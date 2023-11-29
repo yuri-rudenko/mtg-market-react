@@ -32,6 +32,13 @@
     margin: 10px;
 }
 
-.sortingContainer {
+.Cards .sortingContainer {
     max-width: fit-content;
+}
+.Cards .sortingContainer .sorting {
+    width: 150px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: clip;
+    text-align: left;
 }

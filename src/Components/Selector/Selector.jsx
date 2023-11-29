@@ -22,17 +22,7 @@ const Selector = (props) => {
     const [url, addUrl] = useState('https://api.scryfall.com/cards/search?order=usd')
     const [link, setLink] = useState('')
 
-    const [urlArr, setUrlArr] = useState({
-        order: '',
-        name:'',
-        value:'',
-        sets:'',
-        colors:'',
-        types:'',
-        subtypes:'',
-        formats:'',
-        value:''
-    })
+    const [urlArr, setUrlArr] = [props.urlArr, props.setUrlArr] 
 
     const params = useParams()['*']
 

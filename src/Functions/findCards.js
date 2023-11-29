@@ -2,10 +2,35 @@ import axios from "axios";
 import { defaultCards } from "./defaultCards";
 import { useNavigate } from "react-router-dom";
 
+function findOrder(str) {
+
+    const findO = str.indexOf('o:')
+    const findPlus = str.indexOf('+', findO)
+
+    if(findO === -1) return [str, 'usd', '&dir=asc&q=']
+
+    const found = str.slice(findO+2, findPlus)
+
+    const order = found.slice(0, -1)
+    const newParams = str.slice(0, findO) + str.slice(findPlus+1)
+
+    const last = found.slice(-1)
+    console.log(last)
+    let rev = '&dir='
+    last == 0? rev += `asc&q=`: rev+=`desc&q=`
+
+    return([newParams, order, rev])
+
+}
+
 function findCards(params, setCards, setLoading) {
 
-    const newUrl = 'https://api.scryfall.com/cards/search?order=usd&q=' + params
+    const [newParams, order, reverse] = findOrder(params)
 
+    console.log(findOrder(params))
+
+    const newUrl = 'https://api.scryfall.com/cards/search?order=' + order + reverse + newParams
+    console.log(newUrl)
     try {
         setLoading(true);
     
