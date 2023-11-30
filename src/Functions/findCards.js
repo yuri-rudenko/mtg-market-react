@@ -23,7 +23,6 @@ function findOrder(inputStr) {
     const newParams = str.slice(0, findO) + str.slice(findPlus+1)
 
     const last = found.slice(-1)
-    console.log(last)
     let rev = '&dir='
     last == 0? rev += `asc&q=`: rev+=`desc&q=`
 
@@ -34,8 +33,6 @@ function findOrder(inputStr) {
 function findCards(params, setCards, setLoading) {
 
     const [newParams, order, reverse] = findOrder(params)
-
-    console.log(findOrder(params))
 
     const newUrl = 'https://api.scryfall.com/cards/search?order=' + order + reverse + newParams
     console.log(newUrl)
@@ -57,6 +54,7 @@ function findCards(params, setCards, setLoading) {
         axios.get(newUrl)
             .then((response) => {
                 setCards(response.data.data)
+                console.log('DATA', response.data)
             })
             .catch((error) => {
                 axios.get("https://api.scryfall.com/cards/search?order=usd&q=e%3ARIX")
