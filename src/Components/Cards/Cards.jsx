@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './Cards.css'
 import { useNavigate, useParams } from 'react-router-dom';
 import Sorter from './Sorter/Sorter';
+import { Pagination } from 'antd';
 
 function getImageSrc(card) {
   if(card.image_uris !== undefined) return card.image_uris.normal
@@ -21,14 +22,16 @@ const Cards = (props) => {
 
   const loading = props.loading
   const course = props.course
-  const cards = props.data
+  let cards = props.data.data
+  if(!cards) cards = []
 
-  console.log(cards)
+  console.log(cards, 'CARDS')
   
   return (
     <div className="Cards">
       <div className="top">
         <Sorter setUrlArr={props.setUrlArr}/>
+        <Pagination defaultCurrent={1} total={5000} />
       </div>
       {loading ? ( 
         <h1>Loading</h1>

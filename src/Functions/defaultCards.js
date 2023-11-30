@@ -13,7 +13,7 @@ export async function defaultCards() {
             cards = [...cards, ...data.data]
         }
 
-        return cards
+        return data
     } catch (error) {
         console.error('Error fetching data:', error);
         throw error

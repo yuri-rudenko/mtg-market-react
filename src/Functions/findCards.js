@@ -43,7 +43,7 @@ function findCards(params, setCards, setLoading) {
         if (newUrl === '/') {
             axios.get("https://api.scryfall.com/cards/search?order=usd&q=e%3ARIX")
                 .then((response) => {
-                    setCards(response.data.data)
+                    setCards(response.data)
                 })
                 .finally(() => {
                     setLoading(false)
@@ -53,12 +53,12 @@ function findCards(params, setCards, setLoading) {
     
         axios.get(newUrl)
             .then((response) => {
-                setCards(response.data.data)
+                setCards(response.data)
                 console.log('DATA', response.data)
             })
             .catch((error) => {
                 axios.get("https://api.scryfall.com/cards/search?order=usd&q=e%3ARIX")
-                    .then(response => setCards(response.data.data))
+                    .then(response => setCards(response.data))
             })
             .finally(() => {
                 setLoading(false)
