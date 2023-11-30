@@ -2,7 +2,15 @@ import axios from "axios";
 import { defaultCards } from "./defaultCards";
 import { useNavigate } from "react-router-dom";
 
-function findOrder(str) {
+function replaceMana(str) {
+    const newString = str.replace(/m<=/g, 'mv<=').replace(/m>=/g, 'mv>=')
+
+    return newString
+}
+
+function findOrder(inputStr) {
+
+    const str = replaceMana(inputStr)
 
     const findO = str.indexOf('o:')
     const findPlus = str.indexOf('+', findO)
@@ -31,6 +39,7 @@ function findCards(params, setCards, setLoading) {
 
     const newUrl = 'https://api.scryfall.com/cards/search?order=' + order + reverse + newParams
     console.log(newUrl)
+
     try {
         setLoading(true);
     

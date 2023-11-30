@@ -12,8 +12,8 @@ function App() {
     const course = getCourse()
 
     const [urlArr, setUrlArr] = useState({
-        order: '',
         name:'',
+        order: '',
         value:'',
         sets:'',
         colors:'',

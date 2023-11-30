@@ -9,6 +9,7 @@ function createLink(url, addUrl, urlArr, navigate) {
         if(arr[1]) {
             link+=arr[1]
         }
+        console.log(arr)
     })
     addUrl({link})
     navigate(`${link}`)

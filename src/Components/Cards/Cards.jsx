@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import './Cards.css'
 import { useNavigate, useParams } from 'react-router-dom';
-import { Dropdown, Space } from 'antd';
+import { Button, Dropdown, Space } from 'antd';
 import items from './items';
 import { parseLink } from '../Selector/SelectorFunctions/parseLink';
+import { DownOutlined } from '@ant-design/icons';
 
 function formUrlOrder(curOrder, setUrlArr) {
 
@@ -70,8 +71,11 @@ const Cards = (props) => {
           >
             <div className='sortingContainer' onClick={(e) => e.preventDefault()}>
               <Space>
-                <p>Sort by: </p>
-                <button className='sorting'>{selected.label}</button>
+                <p className='sortBy'>Sort by: </p>
+                <Button className='sorting'>
+                    <p className='label'>{selected.label}</p>
+                    <DownOutlined />
+                  </Button>
               </Space>
             </div>
           </Dropdown>

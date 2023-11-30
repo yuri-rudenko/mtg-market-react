@@ -27,7 +27,7 @@ const items = [
     {
         key: '5',
         label: 'EDHREC ranking',
-        value: 'edhrec1',
+        value: 'edhrec0',
     },
 ];
 
