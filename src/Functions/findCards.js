@@ -41,7 +41,7 @@ function findCards(params, setCards, setLoading) {
         setLoading(true);
     
         if (newUrl === '/') {
-            axios.get("https://api.scryfall.com/cards/search?order=usd&q=e%3ARIX")
+            axios.get("https://api.scryfall.com/cards/search?order=edhrec&dir=asc&q=e%3ARIX")
                 .then((response) => {
                     setCards(response.data)
                 })

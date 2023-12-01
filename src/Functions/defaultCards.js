@@ -3,13 +3,14 @@ import axios from "axios";
 export async function defaultCards() {
     try {
         let cards = []
-        let response = await axios.get('https://api.scryfall.com/cards/search?order=usd&q=e%3ARIX')
+        let response = await axios.get('https://api.scryfall.com/cards/search?order=usd&dir=desc&q=e%3ARIX')
         let data = response.data
         cards = data.data
         
         while (data.has_more) {
             response = await axios.get(data.next_page)
-            data = response.data
+            data.data = data.data.concat(response.data.data)
+            data.has_more = response.data.has_more
             cards = [...cards, ...data.data]
         }
 

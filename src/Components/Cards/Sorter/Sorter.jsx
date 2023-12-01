@@ -17,7 +17,7 @@ const Sorter = (props) => {
     const params = useParams()['*']
     const setUrlArr = props.setUrlArr
 
-    const [selected, setSelected] = useState(items[1])
+    const [selected, setSelected] = useState(items[0])
 
     const onClick = ({ key }) => {
 

@@ -23,9 +23,10 @@ const Cards = (props) => {
   const loading = props.loading
   const course = props.course
   let cards = props.data.data
+  const data = props.data
   if(!cards) cards = []
 
-  console.log(cards, 'CARDS')
+  console.log(props.data.data, 'CARDS')
   
   return (
     <div className="Cards">
