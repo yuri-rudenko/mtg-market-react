@@ -26,13 +26,13 @@ const Cards = (props) => {
   const data = props.data
   if(!cards) cards = []
 
-  console.log(props.data.data, 'CARDS')
+  console.log(props.data, 'CARDS')
   
   return (
     <div className="Cards">
       <div className="top">
         <Sorter setUrlArr={props.setUrlArr}/>
-        <Pagination defaultCurrent={1} total={5000} />
+        <Pagination defaultCurrent={1} total={data.total_cards} pageSizeOptions={[36, 72, 100, 175, 525]}/>
       </div>
       {loading ? ( 
         <h1>Loading</h1>

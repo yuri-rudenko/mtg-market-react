@@ -15,7 +15,7 @@ function findOrder(inputStr) {
     const findO = str.indexOf('o:')
     const findPlus = str.indexOf('+', findO)
 
-    if(findO === -1) return [str, 'usd', '&dir=asc&q=']
+    if(findO === -1) return [str, 'usd', '&dir=desc&q=']
 
     const found = str.slice(findO+2, findPlus)
 
