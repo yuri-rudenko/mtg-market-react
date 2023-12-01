@@ -27,12 +27,15 @@ const Cards = (props) => {
   if(!cards) cards = []
 
   console.log(props.data, 'CARDS')
+
+  const [selectedPage, setSelectedPage] = useState(0)
+  const [selectedShow, setSelectedShow] = useState(24)
   
   return (
     <div className="Cards">
       <div className="top">
         <Sorter setUrlArr={props.setUrlArr}/>
-        <Paginator setCards={props.setCards} setLoading={props.setLoading} setUrlArr={props.setUrlArr} data={props.data}/>
+        <Paginator selectedPage={selectedPage} setSelectedPage={setSelectedPage} selectedShow={selectedShow} setSelectedShow={setSelectedShow} size='small' setCards={props.setCards} setLoading={props.setLoading} setUrlArr={props.setUrlArr} data={props.data}/>
       </div>
       {loading ? ( 
         <h1>Loading</h1>
@@ -49,6 +52,11 @@ const Cards = (props) => {
             ))}
         </div>
       )}
+
+      <div className="bottom-paginator">
+        <Paginator selectedPage={selectedPage} setSelectedPage={setSelectedPage} selectedShow={selectedShow} setSelectedShow={setSelectedShow} size='big' setCards={props.setCards} setLoading={props.setLoading} setUrlArr={props.setUrlArr} data={props.data}/>
+      </div>
+
     </div>
   );
 }

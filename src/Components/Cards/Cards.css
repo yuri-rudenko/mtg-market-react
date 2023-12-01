@@ -1,3 +1,9 @@
+.Cards {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .Cards .cards-container {
     display: flex;
     flex-wrap: wrap;
@@ -42,8 +48,10 @@
 }
 
 .Cards .sortingContainer {
-    margin: 10px;
     max-width: fit-content;
+}
+.Sorter {
+    margin-right: 20px;
 }
 .Cards .sortingContainer .sorting {
     display: flex;
@@ -59,4 +67,16 @@
     overflow: hidden;
     white-space: nowrap;
     text-overflow: clip;
+}
+.top {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+}
+.bottom-paginator {
+    margin-bottom: 50px;
+}
+.bottom-paginator * {
+    font-size: 18px;
 }

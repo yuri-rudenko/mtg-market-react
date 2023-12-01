@@ -43,21 +43,23 @@ const Sorter = (props) => {
   }, [params, setUrlArr])
 
     return (
+      <div className="Sorter">
         <Dropdown
-            menu={{ items, onClick }}
-            trigger={['click']}
-            value={selected.label}
-          >
-            <div className='sortingContainer' onClick={(e) => e.preventDefault()}>
-              <Space>
-                <p className='sortBy'>Sort by: </p>
-                <Button className='sorting'>
-                    <p className='label'>{selected.label}</p>
-                    <DownOutlined />
-                  </Button>
-              </Space>
-            </div>
-          </Dropdown>
+          menu={{ items, onClick }}
+          trigger={['click']}
+          value={selected.label}
+        >
+          <div className='sortingContainer' onClick={(e) => e.preventDefault()}>
+            <Space>
+              <p className='sortBy'>Sort by: </p>
+              <Button className='sorting'>
+                  <p className='label'>{selected.label}</p>
+                  <DownOutlined />
+                </Button>
+            </Space>
+          </div>
+        </Dropdown>
+      </div>
     );
 }
 

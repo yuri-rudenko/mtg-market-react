@@ -39,8 +39,10 @@ const Paginator = (props) => {
     const setLoading = props.setLoading
     const params = useParams()['*']
 
-    const [selectedPage, setSelectedPage] = useState(0)
-    const [selectedShow, setSelectedShow] = useState(36)
+    const selectedPage = props.selectedPage
+    const setSelectedPage = props.setSelectedPage
+    const selectedShow = props.selectedShow
+    const setSelectedShow = props.setSelectedShow
 
     useEffect(() => {
 
@@ -83,17 +85,16 @@ const Paginator = (props) => {
     }
     
 
-    // p, s
-
     return (
         <div className='Paginator'>
-            <Pagination 
+            <Pagination
+            size={props.size}
             current={selectedPage} 
             defaultCurrent={1} 
             total={data.total_cards} 
-            defaultPageSize={36} 
+            defaultPageSize={24} 
             pageSize={selectedShow}
-            pageSizeOptions={[36, 72, 100, 175, 525]}
+            pageSizeOptions={[24, 48, 72, 100, 175]}
             onChange={handleChange}
             />
         </div>
