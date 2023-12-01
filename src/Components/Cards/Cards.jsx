@@ -32,7 +32,7 @@ const Cards = (props) => {
     <div className="Cards">
       <div className="top">
         <Sorter setUrlArr={props.setUrlArr}/>
-        <Paginator setUrlArr={props.setUrlArr} data={props.data}/>
+        <Paginator setCards={props.setCards} setLoading={props.setLoading} setUrlArr={props.setUrlArr} data={props.data}/>
       </div>
       {loading ? ( 
         <h1>Loading</h1>

@@ -2,6 +2,16 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { parseLink } from '../../Selector/SelectorFunctions/parseLink';
 import { Pagination } from 'antd';
+import findCards from '../../../Functions/findCards';
+
+function processString(inputString) {
+
+    inputString = inputString.replace(/p:[^+]*\+/g, '')
+  
+    inputString = inputString.replace(/s:[^+]*\+/g, '')
+  
+    return inputString
+}
 
 function formUrlPage(curPage, setUrlArr) {
 
@@ -25,6 +35,8 @@ const Paginator = (props) => {
 
     const data = props.data
     const setUrlArr = props.setUrlArr
+    const setCards = props.setCards
+    const setLoading = props.setLoading
     const params = useParams()['*']
 
     const [selectedPage, setSelectedPage] = useState(0)
@@ -58,13 +70,15 @@ const Paginator = (props) => {
 
     const handleChange = (value, length) => {
 
-        console.log('VALUE', value, length)
-
         formUrlPage(value, setUrlArr)
         setSelectedPage(value)
 
         formUrlShow(length, setUrlArr)
         setSelectedShow(length)
+
+        const newParams = processString(params) + `p:${value}+` + `s:${length}+`
+
+        findCards(newParams, setCards, setLoading, true)
 
     }
     

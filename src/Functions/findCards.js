@@ -63,7 +63,7 @@ function findCards(params, setCards, setLoading, pageChanged) {
 
     const startingPage = Math.floor(((page)*show)/175) + 1
 
-    console.log([newParams, order, reverse, page, show, startingPage], "LOT OF DATA")
+    //console.log([newParams, order, reverse, page, show, startingPage], "LOT OF DATA")
 
     const newUrl = 'https://api.scryfall.com/cards/search?' + `page=${startingPage}&` + 'order=' + order + reverse + newParams + '-is%3Afunny+-is:digital'
     console.log(newUrl)
@@ -84,15 +84,14 @@ function findCards(params, setCards, setLoading, pageChanged) {
     
         axios.get(newUrl)
             .then((response) => {
-                let newCards = [];
-                let first = page * show;
+                let newCards = []
+                let first = page * show
             
                 while (first > 174) {
                     first -= 175;
                 }
             
-                console.log('---------------------');
-                newCards.push(...response.data.data.slice(first, first + show));
+                newCards.push(...response.data.data.slice(first, first + show))
             
                 if (first + show > 174 && response.data.next_page) {
                     
@@ -102,7 +101,6 @@ function findCards(params, setCards, setLoading, pageChanged) {
 
                     .then(([newResponse]) => {
                         newCards.push(...newResponse.data.data.slice(0, first + show - 175))
-                        console.log(first, show, newCards, 'FIRST SUCCES')
                         setCards({...response.data, data: [...newCards]})
                         console.log('DATA', response.data)
                     })
@@ -113,9 +111,7 @@ function findCards(params, setCards, setLoading, pageChanged) {
                 } 
 
                 else {
-                    console.log(first, show, newCards, 'FIRST ELSE')
                     setCards({...response.data, data: [...newCards]})
-                    console.log('DATA', response.data)
                 }
             })        
             .catch((error) => {
