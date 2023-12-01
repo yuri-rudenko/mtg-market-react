@@ -20,6 +20,8 @@ function App() {
         types:'',
         subtypes:'',
         formats:'',
+        page:'',
+        show:'',
     }) 
 
     return (

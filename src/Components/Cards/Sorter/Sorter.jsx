@@ -8,7 +8,7 @@ import { Button, Dropdown, Space } from 'antd';
 
 function formUrlOrder(curOrder, setUrlArr) {
 
-    setUrlArr(prev => ({ ...prev, order: `o:${curOrder.value}+` }));
+  setUrlArr(prev => ({ ...prev, order: `o:${curOrder.value}+` }));
   
 }
 

@@ -103,6 +103,7 @@ const Types = (props) => {
         setSelected(value)
 
     }
+    
     const handleChangeSub = (value) => {
 
         formUrlSubtypes(value, setUrlArr)
