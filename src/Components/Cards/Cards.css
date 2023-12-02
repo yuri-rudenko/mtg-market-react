@@ -26,7 +26,6 @@
 .Cards .cards-container .card {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     margin: 5px;
     padding: 5px;
     border-radius: 10px;
@@ -83,4 +82,38 @@
 }
 .bottom-paginator * {
     font-size: 18px;
+}
+.inputs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.inputs .amount {
+    display: flex;
+}
+.inputs .amount input {
+    text-align: center;
+    font-size: 20px;
+    width: 40px;
+    font-weight: bold;
+    border: 1px solid grey;
+}
+.inputs .amount div {
+    height: 100%;
+    background-color: white;
+    width: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    border: 1px solid grey;
+}
+.inputs .add {
+    background-color: rgb(231, 231, 231);
+    color: grey;
+    padding: 10px;
+    font-weight: bold;
+    border: none;
+    border: 1px solid grey;
+    margin-top: 10px;
 }
