@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
 import './Header.css'
-import { Input, Space } from 'antd';
+import { Dropdown, Input, Space } from 'antd';
 import axios from 'axios';
 import { defaultCards } from '../../Functions/defaultCards';
 import { useNavigate } from 'react-router-dom';
+import { ShoppingCartOutlined } from '@ant-design/icons';
 
 const Header = (props) => {
 
@@ -40,6 +41,40 @@ const Header = (props) => {
         }
         getData()
     }
+
+    const items = [
+        {
+          key: '1',
+          label: (
+            <a target="_blank" rel="noopener noreferrer" href="https://www.antgroup.com">
+              1st menu item
+            </a>
+          ),
+        },
+        {
+          key: '2',
+          label: (
+            <a target="_blank" rel="noopener noreferrer" href="https://www.aliyun.com">
+              2nd menu item (disabled)
+            </a>
+          ),
+          disabled: true,
+        },
+        {
+          key: '3',
+          label: (
+            <a target="_blank" rel="noopener noreferrer" href="https://www.luohanacademy.com">
+              3rd menu item (disabled)
+            </a>
+          ),
+          disabled: true,
+        },
+        {
+          key: '4',
+          danger: true,
+          label: 'a danger item',
+        },
+      ];
     
 
     const { Search } = Input;
@@ -52,6 +87,7 @@ const Header = (props) => {
         <div className='Header'>
             <img onClick={setDefault} src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Magicthegathering-logo.svg/1280px-Magicthegathering-logo.svg.png" alt="Magic" className='logo'/>
             <Search className='search' placeholder="input search text" allowClear enterButton size='large' styles={{color: "red"}} onSearch={onSearch}/>
+            <Dropdown menu={{ items }}><ShoppingCartOutlined className='shopping-cart'/></Dropdown>
         </div>
     );
 }

@@ -1,6 +1,6 @@
 .Header {
     background-color: #F3EEEA;
-    padding: 20px;
+    padding: 20px 100px;
     display: flex;
     align-items: center;
 }
@@ -10,4 +10,9 @@
 }
 .Header .search {
     
+}
+.shopping-cart {
+    font-size: 30px;
+    margin-left: 40px;
+    margin-right: 10px;
 }

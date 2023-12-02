@@ -24,6 +24,9 @@
     color: black;
 }
 .Cards .cards-container .card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     margin: 5px;
     padding: 5px;
     border-radius: 10px;
@@ -75,6 +78,7 @@
     padding: 20px;
 }
 .bottom-paginator {
+    margin-top: 40px;
     margin-bottom: 50px;
 }
 .bottom-paginator * {

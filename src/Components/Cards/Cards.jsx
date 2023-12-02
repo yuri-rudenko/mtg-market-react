@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import Sorter from './Sorter/Sorter';
 import { Pagination } from 'antd';
 import Paginator from './Paginator/Paginator';
+import GearImage from './images/Gear.gif';
 
 function getImageSrc(card) {
   if(card.image_uris !== undefined) return card.image_uris.normal
@@ -38,16 +39,17 @@ const Cards = (props) => {
         <Paginator selectedPage={selectedPage} setSelectedPage={setSelectedPage} selectedShow={selectedShow} setSelectedShow={setSelectedShow} size='small' setCards={props.setCards} setLoading={props.setLoading} setUrlArr={props.setUrlArr} data={props.data}/>
       </div>
       {loading ? ( 
-        <h1>Loading</h1>
+        <img src={GearImage} alt='loading'></img>
       ) : (
         <div className="cards-container">
           {cards.map(card => (
             <div className="card" key={card.id}>
                 <img src={getImageSrc(card)} alt="" onClick={() => navigate(`/${card.name}`)}></img>
                 <div className='text'>
-                  <p className='cardName'>{card.name}</p>
+                  <p onClick={() => console.log(card.id)} className='cardName'>{card.name}</p>
                   <p className="price">{getPrice(card, course)}</p>
                 </div>
+                <button>ADD TO THE CART</button>
               </div>
             ))}
         </div>

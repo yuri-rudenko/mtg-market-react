@@ -80,6 +80,8 @@ const Paginator = (props) => {
 
         const newParams = processString(params) + `p:${value}+` + `s:${length}+`
 
+        console.log('NEWPARAMS', newParams, setCards, setLoading)
+
         findCards(newParams, setCards, setLoading, true)
 
     }
