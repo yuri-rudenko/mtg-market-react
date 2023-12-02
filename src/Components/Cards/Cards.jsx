@@ -28,7 +28,7 @@ const Cards = (props) => {
       ) : (
         <div className="cards-container">
           {cards.map(card => (
-            <Card card={card} course={props.course}/>
+            <Card card={card} key={card.id+1} course={props.course}/>
             ))}
         </div>
       )}
