@@ -101,6 +101,7 @@ function findCards(params, setCards, setLoading, pageChanged) {
 
                     .then(([newResponse]) => {
                         newCards.push(...newResponse.data.data.slice(0, first + show - 175))
+                        if(newCards.length < 1) throw new Error()
                         setCards({...response.data, data: [...newCards]})
                         console.log('DATA', response.data)
                     })
@@ -111,6 +112,7 @@ function findCards(params, setCards, setLoading, pageChanged) {
                 } 
 
                 else {
+                    if(newCards.length < 1) throw new Error()
                     setCards({...response.data, data: [...newCards]})
                 }
             })        
