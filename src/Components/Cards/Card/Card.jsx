@@ -1,3 +1,4 @@
+import { ShoppingCartOutlined } from '@ant-design/icons';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -25,7 +26,9 @@ export function getPrice(card, dollar) {
     const course = props.course
 
     const increaseAmount = () => {
-        setAmount(amount + 1)
+        if(amount < 99) {
+            setAmount(amount + 1)
+        } 
     }
 
     const decreaseAmount = () => {
@@ -35,7 +38,8 @@ export function getPrice(card, dollar) {
     }
 
     const handleAmountChange = (e) => {
-        const newAmount = parseInt(e.target.value, 10)
+        let newAmount = parseInt(e.target.value, 10)
+        if(newAmount > 99) newAmount = 99
         if (!isNaN(newAmount) && newAmount >= 1) {
             setAmount(newAmount)
         }
@@ -57,13 +61,16 @@ export function getPrice(card, dollar) {
                     <div onClick={decreaseAmount}>-</div>
                     <input
                         value={amount}
-                        type="text"
+                        type="number"
                         onChange={handleAmountChange}
                     />
                     <div onClick={increaseAmount}>+</div>
                 </div>
                 <button className='add' onClick={() => addCard(card, amount)}>
-                    ADD TO THE CART
+                    <div className='add-cart-logo'>
+                        <ShoppingCartOutlined/>
+                    </div>
+                    <p className=''>ADD TO THE CART</p>
                 </button>
             </div>
         </div>

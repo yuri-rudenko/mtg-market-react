@@ -117,7 +117,13 @@
     font-size: 24px;
     border: 1px solid grey;
     cursor: pointer;
+    transition: all 0.2s;
 }
+.inputs .amount div:hover {
+    color: orange;
+}
+
+
 .inputs .add {
     background-color: rgb(231, 231, 231);
     color: grey;
@@ -126,4 +132,23 @@
     border: none;
     border: 1px solid grey;
     margin-top: 10px;
+    display: flex;
+    align-items: center;
+    height: 40px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.add .add-cart-logo {
+    margin-right: 5px;
+    font-size: 20px;
+    display: none;
+}
+.Cards .cards-container .card:hover .add {
+    background-color: #272727;
+} 
+.inputs .add:hover {
+    color: white;
+}
+.Cards .cards-container .card:hover .add .add-cart-logo {
+    display: block; 
 }
