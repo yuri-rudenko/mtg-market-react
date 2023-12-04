@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Slider } from 'antd';
 import './Value.css'
 
-function toHryvnas(value, course) {
+export function toHryvnas(value, course) {
     return Math.floor(value*course * 1000)/1000
 }
 

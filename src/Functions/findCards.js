@@ -30,7 +30,7 @@ function findValue(str, symbol) {
             if(find === -1) return [str, 1]
             break;
         case 's':
-            if(find === -1) return [str, 36]
+            if(find === -1) return [str, 24]
             break;
         default:
             
