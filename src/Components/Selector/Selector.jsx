@@ -20,7 +20,6 @@ const Selector = (props) => {
     const setLoading = props.setLoading
 
     const [url, addUrl] = useState('https://api.scryfall.com/cards/search?order=usd')
-    const [link, setLink] = useState('')
 
     const [urlArr, setUrlArr] = [props.urlArr, props.setUrlArr] 
 
@@ -29,7 +28,7 @@ const Selector = (props) => {
     useEffect(() => {
 
         console.log(999, params)
-        findCards(params, setCards, setLoading, true)
+        findCards(params, setCards, setLoading)
 
     }, [url, params, setCards, setLoading])
 

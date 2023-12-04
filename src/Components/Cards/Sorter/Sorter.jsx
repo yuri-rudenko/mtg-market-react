@@ -22,8 +22,6 @@ const Sorter = (props) => {
 
     const params = useParams()['*']
     const setUrlArr = props.setUrlArr
-    const setCards = props.setCards
-    const setLoading = props.setLoading
 
     const navigate = useNavigate()
 

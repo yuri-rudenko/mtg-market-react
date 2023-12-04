@@ -32,7 +32,7 @@ function App() {
                     <Route path='/shop/*' element={
                         <div className='bottom'>
                             <Selector urlArr={urlArr} setUrlArr={setUrlArr} cards={cards} setCards={setCards} setLoading={setLoading} course={course}/>
-                            <Cards setUrlArr={setUrlArr} data={cards} loading={loading} course={course} setCards={setCards} setLoading={setLoading}/>
+                            <Cards setUrlArr={setUrlArr} data={cards} loading={loading} course={course}/>
                         </div>
                     } />
                 </Routes>

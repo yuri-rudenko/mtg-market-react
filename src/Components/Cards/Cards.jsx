@@ -20,8 +20,8 @@ const Cards = (props) => {
   return (
     <div className="Cards">
       <div className="top">
-        <Sorter setUrlArr={props.setUrlArr} setCards={props.setCards} setLoading={props.setLoading}/>
-        <Paginator selectedPage={selectedPage} setSelectedPage={setSelectedPage} selectedShow={selectedShow} setSelectedShow={setSelectedShow} size='small' setCards={props.setCards} setLoading={props.setLoading} setUrlArr={props.setUrlArr} data={props.data}/>
+        <Sorter setUrlArr={props.setUrlArr}/>
+        <Paginator selectedPage={selectedPage} setSelectedPage={setSelectedPage} selectedShow={selectedShow} setSelectedShow={setSelectedShow} size='small' setUrlArr={props.setUrlArr} data={props.data}/>
       </div>
       {loading ? ( 
         <img src={GearImage} alt='loading'></img>
@@ -34,7 +34,7 @@ const Cards = (props) => {
       )}
 
       <div className="bottom-paginator">
-        <Paginator selectedPage={selectedPage} setSelectedPage={setSelectedPage} selectedShow={selectedShow} setSelectedShow={setSelectedShow} size='big' setCards={props.setCards} setLoading={props.setLoading} setUrlArr={props.setUrlArr} data={props.data}/>
+        <Paginator selectedPage={selectedPage} setSelectedPage={setSelectedPage} selectedShow={selectedShow} setSelectedShow={setSelectedShow} size='big' setUrlArr={props.setUrlArr} data={props.data}/>
       </div>
 
     </div>

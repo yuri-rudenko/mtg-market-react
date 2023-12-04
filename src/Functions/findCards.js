@@ -55,11 +55,11 @@ function newValues(inputStr) {
 
 }
 
-function findCards(params, setCards, setLoading, pageChanged) {
+function findCards(params, setCards, setLoading) {
 
     let [newParams, order, reverse, page, show] = newValues(params)
 
-    if(!pageChanged || page===-1) page = 0
+    if(page===-1) page = 0
 
     const startingPage = Math.floor(((page)*show)/175) + 1
 
