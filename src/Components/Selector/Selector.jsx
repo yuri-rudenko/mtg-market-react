@@ -29,9 +29,9 @@ const Selector = (props) => {
     useEffect(() => {
 
         console.log(999, params)
-        findCards(params, setCards, setLoading)
+        findCards(params, setCards, setLoading, true)
 
-    }, [url])
+    }, [url, params, setCards, setLoading])
 
     useEffect(() => {
 

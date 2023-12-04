@@ -72,7 +72,7 @@ function findCards(params, setCards, setLoading, pageChanged) {
         setLoading(true);
     
         if (newUrl === '/') {
-            axios.get("https://api.scryfall.com/cards/search?order=edhrec&dir=asc&q=e%3ARIX")
+            axios.get("https://api.scryfall.com/cards/search?order=usd&dir=desc&q=-is%3Afunny+-is:digital")
                 .then((response) => {
                     setCards(response.data)
                 })
@@ -115,8 +115,47 @@ function findCards(params, setCards, setLoading, pageChanged) {
                 }
             })        
             .catch((error) => {
-                axios.get("https://api.scryfall.com/cards/search?order=usd&q=e%3ARIX")
-                    .then(response => setCards(response.data))
+                try {
+                    const updatedUrl = 'https://api.scryfall.com/cards/search?' + `page=1&` + 'order=' + order + reverse + newParams + '-is%3Afunny+-is:digital'
+                    axios.get(updatedUrl)
+                        .then((response) => {
+                            let newCards = []
+                            let first = 0 * show
+                        
+                            while (first > 174) {
+                                first -= 175;
+                            }
+
+                            console.log(response.data, 'DATA IF FAILKS')
+                        
+                            newCards.push(...response.data.data.slice(first, first + show))
+                        
+                            if (first + show > 174 && response.data.next_page) {
+
+                                Promise.all([
+                                    axios.get(response.data.next_page),
+                                ])
+                            
+                                .then(([newResponse]) => {
+                                    newCards.push(...newResponse.data.data.slice(0, first + show - 175))
+                                    setCards({...response.data, data: [...newCards]})
+                                    console.log('DATA', response.data)
+                                })
+                            
+                                .catch(error => {
+                                    console.error("Error fetching next page:", error)
+                                })
+                            } 
+                        
+                            else {
+                                setCards({...response.data, data: [...newCards]})
+                            }
+                        }) 
+                }
+                catch {
+                    axios.get("https://api.scryfall.com/cards/search?order=usd&q=e%3ARIX")
+                        .then(response => setCards(response.data))
+                }
             })
             .finally(() => {
                 setLoading(false)

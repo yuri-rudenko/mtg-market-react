@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { parseLink } from '../../Selector/SelectorFunctions/parseLink';
 import items from '../items';
 import { DownOutlined } from '@ant-design/icons';
 import { Button, Dropdown, Space } from 'antd';
-import findCards from '../../../Functions/findCards';
 
 function processString(inputString) {
 
@@ -26,6 +25,8 @@ const Sorter = (props) => {
     const setCards = props.setCards
     const setLoading = props.setLoading
 
+    const navigate = useNavigate()
+
     const [selected, setSelected] = useState(items[0])
 
     const onClick = ({ key }) => {
@@ -39,7 +40,7 @@ const Sorter = (props) => {
       setSelected(selectedItem);
       formUrlOrder(selectedItem, setUrlArr)
 
-      findCards(newParams, setCards, setLoading, true)
+      navigate(`/shop/${newParams}`)
 
     }
 

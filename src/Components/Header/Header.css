@@ -94,7 +94,7 @@
     position: absolute;
     top: 0;
     right: 0;
-    margin-left: 11px;
+    margin-right: -8px;
     border-radius: 50%;
     transition: all;
 }

@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { parseLink } from '../../Selector/SelectorFunctions/parseLink';
 import { Pagination } from 'antd';
-import findCards from '../../../Functions/findCards';
 
 function processString(inputString) {
 
@@ -44,6 +43,8 @@ const Paginator = (props) => {
     const selectedShow = props.selectedShow
     const setSelectedShow = props.setSelectedShow
 
+    const navigate = useNavigate()
+
     useEffect(() => {
 
         const all = (parseLink(params, 'p', ':').map(el => el.code))[0]
@@ -52,7 +53,6 @@ const Paginator = (props) => {
 
             setSelectedPage(Number(all))
             formUrlPage(all, setUrlArr)
-
         }
     
     }, [params, setUrlArr])
@@ -82,8 +82,7 @@ const Paginator = (props) => {
 
         console.log('NEWPARAMS', newParams, setCards, setLoading)
 
-        findCards(newParams, setCards, setLoading, true)
-
+        navigate(`/shop/${newParams}`)
     }
     
 
