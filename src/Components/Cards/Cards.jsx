@@ -20,7 +20,7 @@ const Cards = (props) => {
   return (
     <div className="Cards">
       <div className="top">
-        <Sorter setUrlArr={props.setUrlArr}/>
+        <Sorter setUrlArr={props.setUrlArr} setCards={props.setCards} setLoading={props.setLoading}/>
         <Paginator selectedPage={selectedPage} setSelectedPage={setSelectedPage} selectedShow={selectedShow} setSelectedShow={setSelectedShow} size='small' setCards={props.setCards} setLoading={props.setLoading} setUrlArr={props.setUrlArr} data={props.data}/>
       </div>
       {loading ? ( 

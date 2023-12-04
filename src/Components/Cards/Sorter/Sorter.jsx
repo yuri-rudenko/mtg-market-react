@@ -4,7 +4,14 @@ import { parseLink } from '../../Selector/SelectorFunctions/parseLink';
 import items from '../items';
 import { DownOutlined } from '@ant-design/icons';
 import { Button, Dropdown, Space } from 'antd';
+import findCards from '../../../Functions/findCards';
 
+function processString(inputString) {
+
+  inputString = inputString.replace(/o:[^+]*\+/g, '')
+
+  return inputString
+}
 
 function formUrlOrder(curOrder, setUrlArr) {
 
@@ -16,15 +23,23 @@ const Sorter = (props) => {
 
     const params = useParams()['*']
     const setUrlArr = props.setUrlArr
+    const setCards = props.setCards
+    const setLoading = props.setLoading
 
     const [selected, setSelected] = useState(items[0])
 
     const onClick = ({ key }) => {
 
+      console.log(key, "KEY")
+
       const selectedItem = items.find((item) => item.key === key)
+
+      const newParams = processString(params) + `o:${selectedItem.value}+`
 
       setSelected(selectedItem);
       formUrlOrder(selectedItem, setUrlArr)
+
+      findCards(newParams, setCards, setLoading, true)
 
     }
 
@@ -37,8 +52,7 @@ const Sorter = (props) => {
       
         setSelected(cur)
         formUrlOrder(cur, setUrlArr)
-
-    }
+      }
   
   }, [params, setUrlArr])
 

@@ -139,6 +139,7 @@ const Header = (props) => {
                 )}
             
             ><ShoppingCartOutlined className='shopping-cart'/></Dropdown>
+            <p className='show-amount'>{amount}</p>
         </div>
     );
 }
