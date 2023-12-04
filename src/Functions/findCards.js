@@ -55,7 +55,7 @@ function newValues(inputStr) {
 
 }
 
-function findCards(params, setCards, setLoading) {
+function findCards(params, setCards, setLoading, setSelectedPage) {
 
     let [newParams, order, reverse, page, show] = newValues(params)
 
@@ -121,6 +121,9 @@ function findCards(params, setCards, setLoading) {
                     const updatedUrl = 'https://api.scryfall.com/cards/search?' + `page=1&` + 'order=' + order + reverse + newParams + '-is%3Afunny+-is:digital'
                     axios.get(updatedUrl)
                         .then((response) => {
+
+                            setSelectedPage(1)
+
                             let newCards = []
                             let first = 0 * show
                         

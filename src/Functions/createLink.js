@@ -6,6 +6,7 @@ function createLink(url, addUrl, urlArr, navigate) {
     const paramsIterator = searchParams.entries()
     const paramsArray = Array.from(paramsIterator)
     paramsArray.forEach(arr => {
+        if(arr[0] === 'page') arr[1] = 'p:1+'
         if(arr[1]) {
             link+=arr[1]
         }

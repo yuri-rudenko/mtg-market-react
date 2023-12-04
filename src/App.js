@@ -22,7 +22,9 @@ function App() {
         formats:'',
         page:'',
         show:'',
-    }) 
+    })
+
+    const [selectedPage, setSelectedPage] = useState(1)
 
     return (
         <Router basename="/mtg-market-react">
@@ -31,8 +33,8 @@ function App() {
                 <Routes>
                     <Route path='/shop/*' element={
                         <div className='bottom'>
-                            <Selector urlArr={urlArr} setUrlArr={setUrlArr} cards={cards} setCards={setCards} setLoading={setLoading} course={course}/>
-                            <Cards setUrlArr={setUrlArr} data={cards} loading={loading} course={course}/>
+                            <Selector setSelectedPage={setSelectedPage} urlArr={urlArr} setUrlArr={setUrlArr} cards={cards} setCards={setCards} setLoading={setLoading} course={course}/>
+                            <Cards selectedPage={selectedPage} setSelectedPage={setSelectedPage} setUrlArr={setUrlArr} data={cards} loading={loading} course={course}/>
                         </div>
                     } />
                 </Routes>

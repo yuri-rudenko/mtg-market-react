@@ -14,7 +14,7 @@ const Cards = (props) => {
 
   console.log(props.data, 'CARDS')
 
-  const [selectedPage, setSelectedPage] = useState(1)
+  const [selectedPage, setSelectedPage] = [props.selectedPage, props.setSelectedPage]
   const [selectedShow, setSelectedShow] = useState(24)
   
   return (
