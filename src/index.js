@@ -7,9 +7,9 @@ import { Provider } from 'react-redux';
 
 const defaultState = {
 
-      totalPrice: 0,
       amount: 0,
       cards: [],
+
 }
 
 
@@ -38,7 +38,12 @@ const reducer = (state = defaultState, action) => {
                               amount: state.amount + action.payload.card.amount,
                         }
                   }
-
+            case "REMOVE_CARD":
+                  return {
+                        ...state,
+                        amount: state.amount - state.cards.find(card => card.id === action.payload.card.id).amount,
+                        cards: state.cards.filter(card => card.id !== action.payload.card.id)
+                  }
             default:
           return state;
       }

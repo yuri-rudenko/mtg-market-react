@@ -82,3 +82,32 @@
     font-weight: bold;
     font-size: 16px;
 }
+.cart-card-wrapper {
+    position: relative;
+}
+
+.cart-card-wrapper .delete-item {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-left: 11px;
+    border-radius: 50%;
+    transition: all;
+}
+
+.delete-button {
+    border-radius: 50%;
+    font-size: 24px;
+    transition: 0.2s all;
+    transform-origin: center;
+}
+
+.delete-button:hover {
+    font-size: 26px;
+    box-shadow: 0 0 5px rgba(255, 0, 0, 0.8);
+    transform-origin: center;
+}
+
+.padding-bottom-30 {
+    padding-bottom: 30px;
+}

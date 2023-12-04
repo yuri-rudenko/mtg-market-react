@@ -4,8 +4,8 @@ import { Button, Divider, Dropdown, Input, Space, theme } from 'antd';
 import axios from 'axios';
 import { defaultCards } from '../../Functions/defaultCards';
 import { useNavigate } from 'react-router-dom';
-import { ShoppingCartOutlined } from '@ant-design/icons';
-import { useSelector } from 'react-redux';
+import { CloseCircleTwoTone, ShoppingCartOutlined } from '@ant-design/icons';
+import { useDispatch, useSelector } from 'react-redux';
 import { getPrice } from '../Cards/Card/Card';
 
 const { useToken } = theme
@@ -19,6 +19,8 @@ const Header = (props) => {
 
     const cards = useSelector(state => state.cards)
     const amount = useSelector(state => state.amount)
+
+    const dispatch = useDispatch()
 
     const setCards = props.onSearch
     const setLoading = props.setLoading
@@ -54,26 +56,31 @@ const Header = (props) => {
         }
         getData()
     }
-
+    
 
     
     const items = cards.map((card, index) => ({
         key: (index + 1) + card.id,
-        label: <div className='cart-card'>
-                <img src={getImageSrcSmall(card)} alt="CardImage"/>
-                <div className="cart-card-text">
-                    <p className='name'>{card.name}</p>
-                    <p className='amount'>{card.amount} × {Math.floor(card.prices.usd *course * 1000)/1000}₴</p>
+        label:
+            <div className="cart-card-wrapper">
+                <div className="delete-item" onClick={(e) => { 
+                    e.stopPropagation();
+                    dispatch({ type: "REMOVE_CARD", payload: { card: card } });
+                }}>
+                  <CloseCircleTwoTone className='delete-button' twoToneColor={'red'}/>
                 </div>
-            </div>,
+                <div className='cart-card'>
+                        <img src={getImageSrcSmall(card)} alt="CardImage"/>
+                        <div className="cart-card-text">
+                            <p className='name'>{card.name}</p>
+                            <p className='amount'>{card.amount} × {Math.floor(card.prices.usd *course * 1000)/1000}₴</p>
+                        </div>
+                </div>
+            </div>
     }));
     
 
     const { Search } = Input;
-
-    function findCard(card) {
-
-    }
 
     const { token } = useToken();
 
@@ -81,7 +88,6 @@ const Header = (props) => {
       backgroundColor: token.colorBgElevated,
       borderRadius: token.borderRadiusLG,
       boxShadow: token.boxShadowSecondary,
-
     }
 
     return (
@@ -95,10 +101,10 @@ const Header = (props) => {
                 dropdownRender={(menu) => (
                     <div style={contentStyle}>
 
-                        <div className='top-card'>
-                            <p className='left'>{amount} ITEMS</p>
-                            <p className='right'>GO TO CART</p>
-                        </div>
+                    <div className={`top-card ${amount <= 0 ? 'padding-bottom-30' : ''}`}>
+                      <p className='left'>{amount} ITEMS</p>
+                      <p className='right'>GO TO CART</p>
+                    </div>
 
 
                         {amount > 0 && amount !== undefined && (
