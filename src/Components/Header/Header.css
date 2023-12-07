@@ -7,15 +7,30 @@
 .Header .logo {
     height: 60px;
     margin-right: 10px;
+    cursor: pointer;
+    transition: 0.2s all;
 }
-.Header .search {
-    
+.Header .logo:hover {
+    padding-right: 10px;
+    height: 65px;
 }
-.shopping-cart {
+.Header .shop-outlined {
+    font-size: 28px;
+    margin-left: 20px;
+    cursor: pointer;
+}
+.Header .heart {
+    height: 38px;
+    margin-left: 20px;
+    cursor: pointer;
+}
+.Header .shopping-cart {
     font-size: 30px;
-    margin-left: 40px;
+    margin-left: 20px;
     margin-right: 10px;
+    cursor: pointer;
 }
+
 
 .top-card {
     display: flex;

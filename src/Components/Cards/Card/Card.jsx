@@ -51,7 +51,7 @@ export function getPrice(card, dollar) {
 
     return (
         <div className="card">
-            <img src={getImageSrc(card)} alt="" onClick={() => navigate(`/${card.id}`)} />
+            <img src={getImageSrc(card)} alt="" onClick={() => navigate(`/item/${card.id}`)} />
             <div className='text'>
                 <p onClick={() => console.log(card.id)} className='cardName'>{card.name}</p>
                 <p className="price">{getPrice(card, course) !== 0 ? `${getPrice(card, course)} ₴` : '-'}</p>
