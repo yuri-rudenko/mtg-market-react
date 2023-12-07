@@ -53,19 +53,22 @@ const Dropmenu = (props) => {
         className='dropDown' 
         menu={{ items }}
         dropdownRender={(menu) => (
-            <div style={contentStyle}>
+
+          <div style={contentStyle}>
 
             <div className={`top-card ${amount <= 0 ? 'padding-bottom-30' : ''}`}>
               <p className='left'>{amount} ITEMS</p>
-              <Link to={'/cart'}>
+              <Link to={'/checkout'}>
                 <p className='right'>GO TO CART</p>
               </Link>
+              
             </div>
 
 
                 {amount > 0 && amount !== undefined && (
                   <>
-                    {React.cloneElement(menu)}
+                  
+                    <div className='cart-cards-container'> {React.cloneElement(menu)} </div>
                     <Divider style={{ marginTop: 0, marginBottom: 10, backgroundColor: 'lightgray' }} />
                     <div className="total">
                       <p>Total</p>
@@ -85,7 +88,7 @@ const Dropmenu = (props) => {
                       </p>
                     </div>
                     <Divider style={{ marginTop: 0, marginBottom: 10, backgroundColor: 'lightgray' }} />
-                    <Link to={'/cart'}>
+                    <Link to={'/checkout'}>
                         <div className="check-out-wrapper">
                             <button className='check-out'>CHECK OUT</button>
                         </div>

@@ -6,6 +6,7 @@ import { useCardData } from './Functions/useCardData.js';
 import Selector from './Components/Selector/Selector';
 import axios from 'axios';
 import getCourse from './Functions/getCourse';
+import Checkout from './Components/Checkout/Checkout';
 
 function App() {
     const { cards, loading, setCards, setLoading } = useCardData()
@@ -37,6 +38,11 @@ function App() {
                             <Cards selectedPage={selectedPage} setSelectedPage={setSelectedPage} setUrlArr={setUrlArr} data={cards} loading={loading} course={course}/>
                         </div>
                     } />
+                    <Route path = '/checkout' element={
+
+                        <Checkout course={course}></Checkout>
+
+                    }></Route>
                 </Routes>
             </div>
         </Router>

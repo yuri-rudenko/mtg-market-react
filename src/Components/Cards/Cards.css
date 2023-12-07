@@ -149,6 +149,9 @@
 .inputs .add:hover {
     color: white;
 }
+.inputs .add:active {
+    color: red;
+}
 .Cards .cards-container .card:hover .add .add-cart-logo {
     display: block; 
 }
