@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-function getImageSrc(card) {
+export function getImageSrc(card) {
     if(card.image_uris !== undefined) return card.image_uris.normal
     if(card.card_faces !== undefined) return card.card_faces[0].image_uris.normal
 }
@@ -15,12 +15,13 @@ export function getPrice(card, dollar) {
     else return 0
 }
 
-  const Card = (props) => {
+const Card = (props) => {
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
     const [amount, setAmount] = useState(1)
+    const [loading, setLoading] = useState(true)
 
     const card = props.card
     const course = props.course
@@ -43,15 +44,42 @@ export function getPrice(card, dollar) {
         if (!isNaN(newAmount) && newAmount >= 1) {
             setAmount(newAmount)
         }
+        else {
+            setAmount(1)
+        }
     }
 
     const addCard = (card, amount) => {
         dispatch({ type: "ADD_CARD", payload: {card: {...card, amount: amount}}})
-    };
+    }
+
+    const loadImage = (src, callback) => {
+        const image = new Image();
+        image.onload = callback;
+        image.src = src;
+    }
+
+    const handleImageLoad = () => {
+        setLoading(false);
+    }
+
+    loadImage(getImageSrc(card), handleImageLoad);
 
     return (
         <div className="card">
-            <img src={getImageSrc(card)} alt="" onClick={() => navigate(`/item/${card.id}`)} />
+            <div className='image-container'>
+                {loading && <div className='card-loading'>
+                    <div className="elipsis">
+                    <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+                    </div>
+                </div>}
+                <img
+                  src={getImageSrc(card)}
+                  alt=""
+                  onClick={() => navigate(`/item/${card.id}`)}
+                  style={{ opacity: loading ? 0 : 1 }}
+                />
+            </div>
             <div className='text'>
                 <p onClick={() => console.log(card.id)} className='cardName'>{card.name}</p>
                 <p className="price">{getPrice(card, course) !== 0 ? `${getPrice(card, course)} ₴` : '-'}</p>
