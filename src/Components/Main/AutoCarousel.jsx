@@ -26,7 +26,7 @@ const AutoCarousel = (props) => {
 
     return (
         <div>
-            <Carousel autoplay autoplaySpeed={autoScrollTime}>
+            <Carousel speed={750} autoplay autoplaySpeed={autoScrollTime}>
                 <div className='carousel-cards-wrapper'>
                     {renderCarouselCards(0)}
                 </div>

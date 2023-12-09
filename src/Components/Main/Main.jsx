@@ -5,9 +5,12 @@ import Card from '../Cards/Card/Card';
 import './Main.css';
 import { shuffleArray } from '../../Functions/shuffleArray';
 import AutoCarousel from './AutoCarousel';
-import { checkBadSets } from '../../Functions/checkBadSets';
+import { checkBadSetsCommander } from '../../Functions/checkBadSets';
+import { useNavigate } from 'react-router-dom';
 
 const Main = (props) => {
+
+    const navigate = useNavigate()
 
     const { course } = props
 
@@ -24,45 +27,52 @@ const Main = (props) => {
         console.log(sets)
     }, [sets])
 
+    const [loading, setLoading] = useState(true)
+
     useEffect(() => {
+        const random = Math.floor(Math.random() * 20) + 2;
+        const random4 = Math.floor(Math.random() * 5) + 1;
+      
+        const requests = [
+          axios.get(`https://api.scryfall.com/cards/search?page=${random}&order=edhrec&dir=asc&q=-is%3Afunny+-is:digital+-t:land`),
+          axios.get(`https://api.scryfall.com/cards/search?page=${random}&order=edhrec&dir=asc&q=-is%3Afunny+-is:digital+-t:land+usd<=1`),
+          axios.get(`https://api.scryfall.com/cards/search?page=${random4}&order=edhrec&dir=asc&q=-is%3Afunny+-is:digital+t:land`),
+          axios.get(`https://api.scryfall.com/cards/search?page=${random4}&order=edhrec&dir=asc&q=-is%3Afunny+-is:digital+t:creature+t:legendary`),
+          axios.get('https://api.scryfall.com/sets')
+        ];
+      
+        Promise.all(requests)
+            .then((responses) => {
 
-        const random = Math.floor(Math.random() * 20) + 2
-
-        const random4 = Math.floor(Math.random() * 5) +1
-
-        axios.get(`https://api.scryfall.com/cards/search?page=${random}&order=edhrec&dir=asc&q=-is%3Afunny+-is:digital+-t:land`) // Cards
-
-            .then(response => setRecommendedCards(shuffleArray(response.data.data)))
-            .catch(() => setRecommendedCards([]))
-
-        axios.get(`https://api.scryfall.com/cards/search?page=${random}&order=edhrec&dir=asc&q=-is%3Afunny+-is:digital+-t:land+usd<=1`) //Budget
-
-            .then(response => setRecommendedBudget(shuffleArray(response.data.data)))
-            .catch(() => setRecommendedBudget([]))
-
-        axios.get(`https://api.scryfall.com/cards/search?page=${random4}&order=edhrec&dir=asc&q=-is%3Afunny+-is:digital+t:land`) //Lands
-
-            .then(response => setRecommendedLands(shuffleArray(response.data.data)))
-            .catch(() => setRecommendedLands([]))
-        
-        axios.get(`https://api.scryfall.com/cards/search?page=${random4}&order=edhrec&dir=asc&q=-is%3Afunny+-is:digital+t:creature+t:legendary`) //Commanders
-
-            .then(response => setRecommendedCommanders(shuffleArray(response.data.data)))
-            .catch(() => setRecommendedCommanders([]))
-
-        axios.get('https://api.scryfall.com/sets')
-            .then(response => {
-                const newSets = response.data.data.filter(set => checkBadSets(set)).map(set => ({
+                const [
+                    cardsResponse,
+                    budgetResponse,
+                    landsResponse,
+                    commandersResponse,
+                    setsResponse
+                ] = responses
+            
+                setRecommendedCards(shuffleArray(cardsResponse.data.data))
+                setRecommendedBudget(shuffleArray(budgetResponse.data.data))
+                setRecommendedLands(shuffleArray(landsResponse.data.data))
+                setRecommendedCommanders(shuffleArray(commandersResponse.data.data))
+            
+                const newSets = setsResponse.data.data.filter(set => checkBadSetsCommander(set)).map(set => ({
                     name: set.name,
                     card_count: set.card_count,
                     image: set.icon_svg_uri,
                     id: set.id,
                     code: set.code,
                 }));
-
+            
                 width >= 880 ? setSets(newSets.slice(0, 32)) : setSets(newSets.slice(0, 16))
+                setLoading(false)
+
             })
-    },  [])
+            .catch(() => {
+                setLoading(false)
+            })
+    }, [])
 
     const handleResize = () => {
         setWidth(window.innerWidth)
@@ -111,7 +121,7 @@ const Main = (props) => {
                     {sets.length > 0 && 
                         sets.map(set => {
                             return (
-                                <div key={set.name} className="set-container">
+                                <div key={set.name} className="set-container" onClick={() => navigate(`shop/(e:${set.code})+`)}>
                                     <img src={set.image} alt={set.name}></img>
                                     <p>{set.name}</p>
                                 </div>
