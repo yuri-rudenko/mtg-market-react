@@ -158,6 +158,10 @@
     margin-top: 50px;
     font-size: 30px;
 }
+.Item .recommendation-wrapper {
+    display: flex;
+    justify-content: center;
+}
 .Item .recommendation {
     display: flex;
     max-width: 1000px;

@@ -200,9 +200,12 @@ const Item = (props) => {
                 <CardTable card={card}/>
                 <p className='recommended-cards'>Recommended cards</p>
                 <Divider style={{background:"grey"}}/>
-                <div className="recommendation">
-                    {recommendedCards.map(card => <Card key={card.id + 3} card={card} course={course}></Card>)}
+                <div className="recommendation-wrapper">
+                    <div className="recommendation">
+                        {recommendedCards.map(card => <Card key={card.id + 3} card={card} course={course}></Card>)}
+                    </div>
                 </div>
+
             </div>
             </div>
         )
