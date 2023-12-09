@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/mtg-market-react/static/css/main.e1f92dff.css",
-    "main.js": "/mtg-market-react/static/js/main.1701f0d0.js",
+    "main.css": "/mtg-market-react/static/css/main.a4fbf8e8.css",
+    "main.js": "/mtg-market-react/static/js/main.5a913b6f.js",
     "static/media/Gear.gif": "/mtg-market-react/static/media/Gear.8eee398824acea84ace2.gif",
     "index.html": "/mtg-market-react/index.html",
     "static/media/heart.svg": "/mtg-market-react/static/media/heart.7ddb402762972d44e2d8323fdd72734e.svg",
-    "main.e1f92dff.css.map": "/mtg-market-react/static/css/main.e1f92dff.css.map",
-    "main.1701f0d0.js.map": "/mtg-market-react/static/js/main.1701f0d0.js.map"
+    "main.a4fbf8e8.css.map": "/mtg-market-react/static/css/main.a4fbf8e8.css.map",
+    "main.5a913b6f.js.map": "/mtg-market-react/static/js/main.5a913b6f.js.map"
   },
   "entrypoints": [
-    "static/css/main.e1f92dff.css",
-    "static/js/main.1701f0d0.js"
+    "static/css/main.a4fbf8e8.css",
+    "static/js/main.5a913b6f.js"
   ]
 }
