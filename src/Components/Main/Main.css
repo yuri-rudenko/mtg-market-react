@@ -39,10 +39,18 @@
     margin-right: 5px;
 }
 .Main .latest-sets .set-container p {
+    font-weight: bold;
     text-overflow: ellipsis;
     white-space: nowrap;
     max-width: 1fr;
     font-size: 14px;
+}
+.Main .loading-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
 }
 
 @media(max-width:1450px) {

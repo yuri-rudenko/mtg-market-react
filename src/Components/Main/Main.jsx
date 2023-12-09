@@ -7,6 +7,7 @@ import { shuffleArray } from '../../Functions/shuffleArray';
 import AutoCarousel from './AutoCarousel';
 import { checkBadSetsCommander } from '../../Functions/checkBadSets';
 import { useNavigate } from 'react-router-dom';
+import GearImage from './images/Gear.gif'
 
 const Main = (props) => {
 
@@ -114,41 +115,40 @@ const Main = (props) => {
 
     return (
         <div className='Main'>
-
-            <div className="latest-sets">
+          {!loading ? (
+            <>
+              <div className="latest-sets">
                 <p className="latest-sets header">Latest Sets</p>
                 <div className="latest-sets-container">
-                    {sets.length > 0 && 
-                        sets.map(set => {
-                            return (
-                                <div key={set.name} className="set-container" onClick={() => navigate(`shop/(e:${set.code})+`)}>
-                                    <img src={set.image} alt={set.name}></img>
-                                    <p>{set.name}</p>
-                                </div>
-                            )
-
-                        })
-                    }
+                  {sets.length > 0 &&
+                    sets.map(set => (
+                      <div key={set.name} className="set-container" onClick={() => navigate(`shop/(e:${set.code})+`)}>
+                        <img src={set.image} alt={set.name}></img>
+                        <p>{set.name}</p>
+                      </div>
+                    ))}
                 </div>
-            </div>
-
-            <p className='recommended-cards header'>Recommended cards</p>
-            <Divider style={{background:'darkgrey'}}/>
-            <AutoCarousel course={course} show={show} cards={recommendedCards}/>
-
-            <p className='recommended-cards header'>Recommended budget cards</p>
-            <Divider style={{background:'darkgrey'}}/>
-            <AutoCarousel course={course} show={show} cards={recommendedBudget}/>
-
-            <p className='recommended-cards header'>Recommended lands</p>
-            <Divider style={{background:'darkgrey'}}/>
-            <AutoCarousel course={course} show={show} cards={recommendedLands}/>
-
-            <p className='recommended-cards header'>Recommended commanders</p>
-            <Divider style={{background:'darkgrey'}}/>
-            <AutoCarousel course={course} show={show} cards={recommendedCommanders}/>
+              </div>
+      
+              <p className='recommended-cards header'>Recommended cards</p>
+              <Divider style={{ background: 'darkgrey' }} />
+              <AutoCarousel course={course} show={show} cards={recommendedCards} />
+      
+              <p className='recommended-cards header'>Recommended budget cards</p>
+              <Divider style={{ background: 'darkgrey' }} />
+              <AutoCarousel course={course} show={show} cards={recommendedBudget} />
+      
+              <p className='recommended-cards header'>Recommended lands</p>
+              <Divider style={{ background: 'darkgrey' }} />
+              <AutoCarousel course={course} show={show} cards={recommendedLands} />
+      
+              <p className='recommended-cards header'>Recommended commanders</p>
+              <Divider style={{ background: 'darkgrey' }} />
+              <AutoCarousel course={course} show={show} cards={recommendedCommanders} />
+            </>
+          ) : <div className='loading-container'><img className='loading-gear' src={GearImage} alt='loading' /></div>}
         </div>
-    )
+      )
 }
 
 export default Main;

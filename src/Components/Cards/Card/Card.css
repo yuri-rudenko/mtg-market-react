@@ -23,6 +23,7 @@
     align-items: center;
 }
 .card .text .cardName {
+    margin-top: 5px;
     text-align: center;
     font-size: 20px;
     overflow: hidden;
@@ -119,6 +120,22 @@
 .card .image-container {
     width: 210px;
     height: 292px;
+}
+.card .add-to-favs {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    cursor: pointer;
+}
+.card .add-to-favs:hover {
+    text-decoration: underline;
+}
+.card .add-to-favs:active {
+    position: relative;
+    top: 2px;
+}
+.card .add-to-favs svg {
+    margin-right: 3px;
 }
 .elipsis {
     width: 100%;

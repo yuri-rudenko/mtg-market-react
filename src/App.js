@@ -9,6 +9,7 @@ import getCourse from './Functions/getCourse';
 import Checkout from './Components/Checkout/Checkout';
 import Item from './Components/Item/Item';
 import Main from './Components/Main/Main';
+import Favourites from './Components/Favourites/Favourites';
 
 function App() {
     const { cards, loading, setCards, setLoading } = useCardData()
@@ -52,6 +53,7 @@ function App() {
                     <Route path="/item/:id" element={
                         <Item course={course} />
                     } />
+                    <Route path="/favourites" element={<Favourites course={course}></Favourites>}/>
                 </Routes>
             </div>
         </Router>

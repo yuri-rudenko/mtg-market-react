@@ -1,8 +1,9 @@
-import { ShoppingCartOutlined } from '@ant-design/icons';
+import { HeartOutlined, HeartTwoTone, ShoppingCartOutlined } from '@ant-design/icons';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import './Card.css'
+import heart from '../images/heart.svg'
 
 export function getImageSrc(card) {
     if(card.image_uris !== undefined) return card.image_uris.normal
@@ -16,10 +17,13 @@ export function getPrice(card, dollar) {
     else return 0
 }
 
+
+
 const Card = (props) => {
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const favourites = useSelector(state => state.favourites)
 
     const [amount, setAmount] = useState(1)
     const [loading, setLoading] = useState(true)
@@ -64,6 +68,16 @@ const Card = (props) => {
         setLoading(false);
     }
 
+    const addToFavs = (card) => {
+        dispatch({type: "ADD_FAV", payload: {card: card}})
+        console.log(card)
+    }
+
+    const removeFromFavs = (card) => {
+        dispatch({type: "REMOVE_FAV", payload: {card: card}})
+        console.log(card)
+    }
+
     loadImage(getImageSrc(card), handleImageLoad);
 
     return (
@@ -96,6 +110,18 @@ const Card = (props) => {
                     />
                     <div onClick={increaseAmount}>+</div>
                 </div>
+                {!favourites.find(fav => fav.id === card.id) && 
+                    <div className="add-to-favs" onClick={() => addToFavs(card)}>
+                        <HeartOutlined style={{fontSize:24}}/>
+                        <p>Add to favourites</p>
+                    </div>
+                }
+                {favourites.find(fav => fav.id === card.id) && 
+                    <div className="add-to-favs" onClick={() => removeFromFavs(card)}>
+                        <HeartTwoTone style={{fontSize:24}} twoToneColor='red'/>
+                        <p>Remove from favourites</p>
+                    </div> 
+                }
                 <button className='add' onClick={() => addCard(card, amount)}>
                     <div className='add-cart-logo'>
                         <ShoppingCartOutlined/>

@@ -48,8 +48,8 @@ const Header = (props) => {
         <div className='Header'>
             <img onClick={setDefault} src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Magicthegathering-logo.svg/1280px-Magicthegathering-logo.svg.png" onMouseLeave={handleLogoLeave} onMouseEnter={handleLogoHover} alt="Magic" className='logo'/>
             <Search className='search' placeholder="input search text" allowClear enterButton size='large' styles={{color: "red"}} onSearch={onSearch}/>
-            <ShopOutlined className='shop-outlined' onClick={() => navigate('/shop')}/>
-            <img className='heart' src={heart} alt="heart" />
+            <ShopOutlined className='icon shop-outlined' onClick={() => navigate('/shop')}/>
+            <img className='icon heart' src={heart} alt="heart" onClick={() => navigate('/favourites')}/>
             <Dropmenu course={props.course}/>
             <p className='show-amount'>{amount}</p>
         </div>

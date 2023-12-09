@@ -1,0 +1,12 @@
+.Favourites {
+    margin: 40px 100px;
+}
+.Favourites .your-favs {
+    text-align: center;
+    margin-bottom: 40px;
+}
+.Favourites .fav-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
