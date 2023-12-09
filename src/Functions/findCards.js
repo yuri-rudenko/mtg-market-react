@@ -155,11 +155,13 @@ function findCards(params, setCards, setLoading, setSelectedPage) {
                             else {
                                 setCards({...response.data, data: [...newCards]})
                             }
-                        }) 
+                        })
+                        .catch(error => {
+                            setCards({data: []})
+                        })
                 }
                 catch {
-                    axios.get("https://api.scryfall.com/cards/search?order=usd&q=e%3ARIX")
-                        .then(response => setCards(response.data))
+                    setCards({data: []})
                 }
             })
             .finally(() => {

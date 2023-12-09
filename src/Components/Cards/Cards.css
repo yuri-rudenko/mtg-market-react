@@ -51,6 +51,23 @@
 .bottom-paginator * {
     font-size: 18px;
 }
+.no-cards-found {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-self: center;
+}
+.no-cards-found p {
+  font-size: 24px;
+  cursor: pointer;
+}
+.no-cards-found p:hover {
+  text-decoration: underline;
+}
+.no-cards-found p:active {
+  position: relative;
+  top: 2px;
+}
 
 
 

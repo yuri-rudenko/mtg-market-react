@@ -10,7 +10,6 @@ import Dropmenu from './Dropmenu';
 import heart from './heart.svg'
 
 
-
 const Header = (props) => {
 
     const amount = useSelector(state => state.amount)
@@ -22,31 +21,14 @@ const Header = (props) => {
 
     function onSearch(value) {
         let newVal = value.replace(/[\s]+$/, '').replace(/ {2,}/g, '+')
-        searchCard(newVal)
+        console.log(newVal, 'NEWWAL')
+        navigate(`/shop/${newVal}+p:1+`)
     }
 
     async function setDefault() {
         navigate('/')
         const cardsData = await defaultCards();
         setCards(cardsData);
-    }
-
-    function searchCard(name) {
-
-        async function getData() {
-            try {
-                setLoading(true)
-                let result = await axios.get(`https://api.scryfall.com/cards/search?order=usd&q=${name}`)
-                setCards(result.data.data)
-            }
-            catch(error) {
-                console.log(error)
-            }
-            finally {
-                setLoading(false)
-            }
-        }
-        getData()
     }
 
     const handleLogoHover = () => {

@@ -32,7 +32,7 @@ function App() {
     return (
         <Router basename="/mtg-market-react">
             <div className='App'>
-                <Header course={course} onSearch={setCards} setLoading={setLoading} />
+                <Header setUrlArr={setUrlArr} course={course} onSearch={setCards} setLoading={setLoading} />
                 <Routes>
                     <Route path='/' element={
                         <Main course={course}/>
