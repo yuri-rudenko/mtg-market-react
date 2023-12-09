@@ -17,3 +17,42 @@
     margin-bottom: 0px;
     font-size: 26px;
 }
+.Main .latest-sets .latest-sets-container {
+    margin: 20px 100px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 20px;
+}
+
+.Main .latest-sets .set-container {
+    display: flex;
+    margin-top: 5px;
+    cursor: pointer;
+}
+.Main .latest-sets .set-container:hover {
+    text-decoration: underline;
+    color: rgb(0, 31, 131);
+}
+.Main .latest-sets .set-container img {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+}
+.Main .latest-sets .set-container p {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 1fr;
+    font-size: 14px;
+}
+
+@media(max-width:1450px) {
+    .Main .latest-sets .latest-sets-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media(max-width:880px) {
+    .Main .latest-sets .latest-sets-container {
+        margin: 20px 20px;
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
