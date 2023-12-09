@@ -4,9 +4,12 @@ import { useEffect } from 'react';
 import Card from '../Cards/Card/Card';
 
 const AutoCarousel = (props) => {
+
     const course = props.course
     const cards = props.cards
     const show = props.show
+
+    const autoScrollTime = Math.floor(Math.random() * 2000) + 3000
 
     const renderCarouselCards = (startIndex) => {
         
@@ -23,7 +26,7 @@ const AutoCarousel = (props) => {
 
     return (
         <div>
-            <Carousel autoplay autoplaySpeed={3000}>
+            <Carousel autoplay autoplaySpeed={autoScrollTime}>
                 <div className='carousel-cards-wrapper'>
                     {renderCarouselCards(0)}
                 </div>

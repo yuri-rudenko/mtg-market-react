@@ -12,6 +12,10 @@ const Main = (props) => {
     const { course } = props
 
     const [recommendedCards, setRecommendedCards] = useState([])
+    const [recommendedBudget, setRecommendedBudget] = useState([])
+    const [recommendedCommanders, setRecommendedCommanders] = useState([])
+    const [recommendedLands, setRecommendedLands] = useState([])
+
     const [sets, setSets] = useState([])
     const [width, setWidth] = useState(window.innerWidth)
     const [show, setShow] = useState(4)
@@ -24,10 +28,27 @@ const Main = (props) => {
 
         const random = Math.floor(Math.random() * 20) + 2
 
-        axios.get(`https://api.scryfall.com/cards/search?page=${random}&order=edhrec&dir=asc&q=-is%3Afunny+-is:digital+-t:land`)
+        const random4 = Math.floor(Math.random() * 5) +1
+
+        axios.get(`https://api.scryfall.com/cards/search?page=${random}&order=edhrec&dir=asc&q=-is%3Afunny+-is:digital+-t:land`) // Cards
 
             .then(response => setRecommendedCards(shuffleArray(response.data.data)))
             .catch(() => setRecommendedCards([]))
+
+        axios.get(`https://api.scryfall.com/cards/search?page=${random}&order=edhrec&dir=asc&q=-is%3Afunny+-is:digital+-t:land+usd<=1`) //Budget
+
+            .then(response => setRecommendedBudget(shuffleArray(response.data.data)))
+            .catch(() => setRecommendedBudget([]))
+
+        axios.get(`https://api.scryfall.com/cards/search?page=${random4}&order=edhrec&dir=asc&q=-is%3Afunny+-is:digital+t:land`) //Lands
+
+            .then(response => setRecommendedLands(shuffleArray(response.data.data)))
+            .catch(() => setRecommendedLands([]))
+        
+        axios.get(`https://api.scryfall.com/cards/search?page=${random4}&order=edhrec&dir=asc&q=-is%3Afunny+-is:digital+t:creature+t:legendary`) //Commanders
+
+            .then(response => setRecommendedCommanders(shuffleArray(response.data.data)))
+            .catch(() => setRecommendedCommanders([]))
 
         axios.get('https://api.scryfall.com/sets')
             .then(response => {
@@ -39,7 +60,7 @@ const Main = (props) => {
                     code: set.code,
                 }));
 
-                width > 880 ? setSets(newSets.slice(0, 32)) : setSets(newSets.slice(0, 16))
+                width >= 880 ? setSets(newSets.slice(0, 32)) : setSets(newSets.slice(0, 16))
             })
     },  [])
 
@@ -104,6 +125,18 @@ const Main = (props) => {
             <p className='recommended-cards header'>Recommended cards</p>
             <Divider style={{background:'darkgrey'}}/>
             <AutoCarousel course={course} show={show} cards={recommendedCards}/>
+
+            <p className='recommended-cards header'>Recommended budget cards</p>
+            <Divider style={{background:'darkgrey'}}/>
+            <AutoCarousel course={course} show={show} cards={recommendedBudget}/>
+
+            <p className='recommended-cards header'>Recommended lands</p>
+            <Divider style={{background:'darkgrey'}}/>
+            <AutoCarousel course={course} show={show} cards={recommendedLands}/>
+
+            <p className='recommended-cards header'>Recommended commanders</p>
+            <Divider style={{background:'darkgrey'}}/>
+            <AutoCarousel course={course} show={show} cards={recommendedCommanders}/>
         </div>
     )
 }
