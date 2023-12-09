@@ -1,0 +1,19 @@
+.Main {
+    
+}
+
+.Main .carousel-cards {
+    display: flex;
+    justify-content: center;
+    margin-bottom: -10px;
+    flex-wrap: wrap;
+    min-height: 450px;
+}
+.Main .carousel-cards-wrapper {
+    transform: scale(0.9);
+}
+.Main .header {
+    margin: 20px 100px;
+    margin-bottom: 0px;
+    font-size: 26px;
+}

@@ -26,7 +26,7 @@ const Header = (props) => {
     }
 
     async function setDefault() {
-        navigate('/shop')
+        navigate('/')
         const cardsData = await defaultCards();
         setCards(cardsData);
     }

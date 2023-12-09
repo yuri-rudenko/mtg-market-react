@@ -32,13 +32,13 @@
 .Checkout .chechout-cart .cards {
     padding: 0px 10px;
 }
-.Checkout .card {
+.Checkout .card-checkout {
     display: flex;
     justify-content: space-between;
     padding: 10px 0px;
     font-size: 18px;
 }
-.Checkout .card * {
+.Checkout .card-checkout * {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 .Checkout .card-left {

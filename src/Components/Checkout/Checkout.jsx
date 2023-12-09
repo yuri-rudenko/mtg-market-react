@@ -118,7 +118,7 @@ const Checkout = (props) => {
                     <Divider style={{background:'darkgrey'}}/>
                     {cards.map(card => {
                         return (
-                            <div key={card.id + '2'} className='card'>
+                            <div key={card.id + '2'} className='card-checkout'>
                                 <div className="card-left">
                                     <div>{card.name} x{card.amount}</div>
                                 </div>

@@ -1,6 +1,6 @@
 import { CloseCircleTwoTone, ShoppingCartOutlined } from '@ant-design/icons';
 import { Divider, Dropdown, theme } from 'antd';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { getPrice } from '../Cards/Card/Card';
 import { useDispatch, useSelector } from 'react-redux';
@@ -33,7 +33,7 @@ const Dropmenu = (props) => {
                         <img src={getImageSrcSmall(card)} alt="CardImage"/>
                         <div className="cart-card-text">
                             <p className='name'>{card.name}</p>
-                            <p className='amount'>{card.amount} × {Math.floor(card.prices.usd * course * 1000)/1000}₴</p>
+                            <p className='amount'>{card.amount} × {getPrice(card, course)}₴</p>
                         </div>
                 </div>
             </div>
@@ -46,6 +46,12 @@ const Dropmenu = (props) => {
       borderRadius: token.borderRadiusLG,
       boxShadow: token.boxShadowSecondary,
     }
+
+    useEffect(() => {
+
+      console.log(cards)
+
+    }, [cards])
 
     return (
         <Dropdown 

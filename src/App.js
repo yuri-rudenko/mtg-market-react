@@ -8,6 +8,7 @@ import axios from 'axios';
 import getCourse from './Functions/getCourse';
 import Checkout from './Components/Checkout/Checkout';
 import Item from './Components/Item/Item';
+import Main from './Components/Main/Main';
 
 function App() {
     const { cards, loading, setCards, setLoading } = useCardData()
@@ -33,6 +34,9 @@ function App() {
             <div className='App'>
                 <Header course={course} onSearch={setCards} setLoading={setLoading} />
                 <Routes>
+                    <Route path='/' element={
+                        <Main course={course}/>
+                    } />
                     <Route path='/shop/*' element={
                         <div className='bottom'>
                             <Selector setSelectedPage={setSelectedPage} urlArr={urlArr} setUrlArr={setUrlArr} cards={cards} setCards={setCards} setLoading={setLoading} course={course}/>
