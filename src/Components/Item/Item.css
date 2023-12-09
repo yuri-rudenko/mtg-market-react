@@ -1,0 +1,169 @@
+.Item-wrapper {
+    display: flex;
+    justify-content: center;
+    background-color: rgb(236, 236, 236);
+    border-top: 1px solid grey;
+}
+.Item-wrapper * {
+    max-width: 100%;
+}
+.Item {
+    margin: 30px 100px;
+}
+.Item * {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.Item .added-to-cart {
+    display: flex;
+    font-size: 22px;
+    margin-bottom: 15px;
+}
+.Item .added-to-cart .added-to-cart-name {
+    margin-right: 6px;
+    margin-left: 6px;
+    font-weight: bold;
+}
+.Item .top-item {
+    display: flex;
+}
+.Item .left {
+    padding: 20px;
+    border: 1px solid grey;
+    margin-right: 20px;
+}
+.Item .big-card {
+    border-radius: 20px;
+    height: 500px;
+}
+.Item .top-item .big-text p {
+    font-size: 34px;
+    font-weight: bold;
+}
+.Item .top-item .big-text .price {
+    font-size: 30px;
+    font-weight: normal;
+}
+.Item .categories {
+    display: flex;
+    flex-wrap: wrap;
+}
+.Item .categories p {
+    margin-right: 10px;
+    width: fit-content;
+    font-size: 20px;
+}
+.Item .avalibility {
+    margin-top: 10px;
+    font-size: 20px;
+}
+
+.Item .add-to-cart-item {
+    display: flex;
+}
+.Item .add-to-cart-item .amount-changer-item {
+    display: flex;
+}
+.Item .add-to-cart-item .amount-changer-item input {
+    text-align: center;
+    font-size: 26px;
+    padding: 10px 5px;
+    width: 50px;
+    font-weight: bold;
+    border: 1px solid grey;
+}
+.Item .add-to-cart-item .amount-changer-item input::-webkit-outer-spin-button,
+.Item .add-to-cart-item .amount-changer-item input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.Item .add-to-cart-item .amount-changer-item div {
+    user-select: none;
+    background-color: white;
+    width: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 34px;
+    padding-bottom: 5px;
+    border: 1px solid grey;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.Item .add-to-cart-item .amount-changer-item div:hover {
+    color: orange;
+}
+.Item .add-to-cart-item .add-item * {
+    transition: 0.1s color;
+}
+.Item .add-to-cart-item .add-item {
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    margin-left: 30px;
+    min-width: 210px;
+    font-size: 18px;
+    font-weight: bold;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    transition: 0.3s all;
+}
+.Item .add-item {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.7);
+}
+.Item .add-item .add-cart-logo-item {
+    position: absolute;
+    font-size: 24px;
+    margin-right: 195px;
+    transition: 0.3s;
+    opacity: 0;
+    color: white;
+}
+.Item .add-item:hover .add-cart-logo-item {
+    margin-right: 195px;
+    opacity: 1;
+}
+.Item .add-item:hover {
+    padding-left: 40px;
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+}
+.Item .add-item:active {
+    position: relative;
+    top: 3px;
+}
+.Item .add-to-fav {
+    display: flex;
+    cursor: pointer;
+}
+.Item .add-to-fav:active {
+    position: relative;
+    top: 3px;
+}
+.Item .add-to-fav:hover {
+    text-decoration: underline;
+}
+.Item .add-to-fav p {
+    margin-left: 5px;
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+.Item .extra-info {
+    margin-top: 50px;
+    font-size: 30px;
+}
+.Item .table {
+    margin-top: 10px;
+}
+.Item .recommended-cards {
+    margin-top: 50px;
+    font-size: 30px;
+}
+.Item .recommendation {
+    display: flex;
+    max-width: 1000px;
+    justify-content: center;
+    flex-wrap: wrap;
+}

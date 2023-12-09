@@ -7,6 +7,7 @@ import Selector from './Components/Selector/Selector';
 import axios from 'axios';
 import getCourse from './Functions/getCourse';
 import Checkout from './Components/Checkout/Checkout';
+import Item from './Components/Item/Item';
 
 function App() {
     const { cards, loading, setCards, setLoading } = useCardData()
@@ -43,6 +44,10 @@ function App() {
                         <Checkout course={course}></Checkout>
 
                     }></Route>
+
+                    <Route path="/item/:id" element={
+                        <Item course={course} />
+                    } />
                 </Routes>
             </div>
         </Router>

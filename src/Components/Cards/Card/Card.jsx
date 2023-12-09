@@ -2,6 +2,7 @@ import { ShoppingCartOutlined } from '@ant-design/icons';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import './Card.css'
 
 export function getImageSrc(card) {
     if(card.image_uris !== undefined) return card.image_uris.normal
@@ -70,7 +71,7 @@ const Card = (props) => {
             <div className='image-container'>
                 {loading && <div className='card-loading'>
                     <div className="elipsis">
-                    <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+                    <div className="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
                     </div>
                 </div>}
                 <img
@@ -78,6 +79,7 @@ const Card = (props) => {
                   alt=""
                   onClick={() => navigate(`/item/${card.id}`)}
                   style={{ opacity: loading ? 0 : 1 }}
+                  loading='lazy'
                 />
             </div>
             <div className='text'>

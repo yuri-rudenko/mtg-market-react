@@ -9,6 +9,7 @@ const defaultState = {
 
       amount: 0,
       cards: [],
+      favourites: [],
 
 }
 
@@ -44,8 +45,28 @@ const reducer = (state = defaultState, action) => {
                         amount: state.amount - state.cards.find(card => card.id === action.payload.card.id).amount,
                         cards: state.cards.filter(card => card.id !== action.payload.card.id)
                   }
+            case "ADD_FAV":
+
+                  const favouriteCard = state.favourites.find(card => card.id === action.payload.card.id)
+
+                  if(!favouriteCard) {
+                        return {
+                              ...state,
+                              favourites: [...state.favourites, action.payload.card]
+                        }
+                  }
+                  else {
+                        return state
+                  }
+            case "REMOVE_FAV":
+
+                  return {
+                        ...state,
+                        favourites: state.favourites.filter(card => card.id !== action.payload.card.id)
+                  }
+
             default:
-          return state;
+                  return state;
       }
 }
 

@@ -54,6 +54,11 @@ const Paginator = (props) => {
             setSelectedPage(Number(all))
             formUrlPage(all, setUrlArr)
         }
+
+        else {
+            setSelectedPage(1)
+            formUrlPage(1, setUrlArr)
+        }
     
     }, [params, setUrlArr])
 

@@ -4,58 +4,17 @@
     align-items: center;
 }
 
-.Cards .cards-container {
+.cards-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     padding-right: 10px;
     margin-top: 20px;
 }
-.Cards .cards-container * {
+.cards-container * {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
-}
-.Cards .cards-container img {
-    width: 210px;
-    border-radius: 10px;
-    cursor: pointer;
-}
-.Cards .cards-container h1 {
-    color: black;
-}
-.Cards .cards-container .card {
-    display: flex;
-    flex-direction: column;
-    margin: 5px;
-    padding: 10px;
-    border-radius: 5px;
-    transition: box-shadow 0.2s ease;
-}
-.Cards .cards-container .card:hover {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-}
-.Cards .cards-container .card .text {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.Cards .cards-container .card .text .cardName {
-    text-align: center;
-    font-size: 20px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 186px;
-    cursor: pointer;
-}
-.Cards .cards-container .card .text .cardName:hover {
-    text-decoration: underline;
-}
-.Cards .cards-container .card .text .price {
-    font-size: 20px;
-    text-align: center;
-    font-weight: bold;
-    margin: 10px;
 }
 
 .Cards .sortingContainer {
@@ -92,89 +51,6 @@
 .bottom-paginator * {
     font-size: 18px;
 }
-.inputs {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.inputs .amount {
-    display: flex;
-}
-.inputs .amount input {
-    text-align: center;
-    font-size: 20px;
-    width: 40px;
-    font-weight: bold;
-    border: 1px solid grey;
-}
-.inputs .amount input::-webkit-outer-spin-button,
-.inputs .amount input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-.inputs .amount div {
-    height: 100%;
-    background-color: white;
-    width: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 24px;
-    border: 1px solid grey;
-    cursor: pointer;
-    transition: all 0.2s;
-    user-select: none;
-}
-.inputs .amount div:hover {
-    color: orange;
-}
-
-
-.inputs .add {
-    background-color: rgb(231, 231, 231);
-    color: grey;
-    padding: 10px;
-    font-weight: bold;
-    border: none;
-    border: 1px solid grey;
-    margin-top: 10px;
-    display: flex;
-    align-items: center;
-    height: 40px;
-    cursor: pointer;
-    transition: all 0.2s;
-}
-.Cards .add .add-cart-logo {
-    margin-right: 5px;
-    font-size: 20px;
-    display: none;
-}
-.Cards .cards-container .card:hover .add {
-    background-color: #272727;
-} 
-.inputs .add:hover {
-    color: white;
-}
-.Cards .cards-container .card:hover .add .add-cart-logo {
-    display: block; 
-}
-.Cards .card .card-loading {
-    width: 210px;
-    height: 292px;
-    background-color: #e0e0e0;
-    border-radius: 10px;
-}
-.Cards .card .image-container {
-    width: 210px;
-    height: 292px;
-}
-.elipsis {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
 
 
 
@@ -207,7 +83,7 @@
     width: 6px;
     height: 18px;
     border-radius: 20%;
-    background: rgb(104, 205, 255);
+    background: #cef;
   }
   .lds-spinner div:nth-child(1) {
     transform: rotate(0deg);

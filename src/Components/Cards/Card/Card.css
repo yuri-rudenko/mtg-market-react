@@ -1,0 +1,129 @@
+.card img {
+    width: 210px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.card h1 {
+    color: black;
+}
+.card {
+    display: flex;
+    flex-direction: column;
+    margin: 5px;
+    padding: 10px;
+    border-radius: 5px;
+    transition: box-shadow 0.2s ease;
+}
+.card:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+.card .text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.card .text .cardName {
+    text-align: center;
+    font-size: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 186px;
+    cursor: pointer;
+}
+.card .text .cardName:hover {
+    text-decoration: underline;
+}
+.card .text .price {
+    font-size: 20px;
+    text-align: center;
+    font-weight: bold;
+    margin: 10px;
+}
+
+.card .inputs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.card .inputs .amount {
+    display: flex;
+}
+.card .inputs .amount input {
+    text-align: center;
+    font-size: 20px;
+    width: 40px;
+    font-weight: bold;
+    border: 1px solid grey;
+}
+.card .inputs .amount input::-webkit-outer-spin-button,
+.card .inputs .amount input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.card .inputs .amount div {
+    height: 100%;
+    background-color: white;
+    width: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    border: 1px solid grey;
+    cursor: pointer;
+    transition: all 0.2s;
+    user-select: none;
+}
+.card .inputs .amount div:hover {
+    color: orange;
+}
+
+
+.card .inputs .add {
+    background-color: rgb(231, 231, 231);
+    color: grey;
+    padding: 10px;
+    font-weight: bold;
+    border: none;
+    border: 1px solid grey;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    height: 40px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.card .add .add-cart-logo {
+    margin-right: 5px;
+    font-size: 20px;
+    display: none;
+}
+.card:hover .add {
+    background-color: #272727;
+} 
+.card .add:hover {
+    color: white;
+}
+.card .add:active {
+    position: relative;
+    top: 2px;
+}
+.card:hover .add .add-cart-logo {
+    display: block; 
+}
+.card .card-loading {
+    width: 210px;
+    height: 292px;
+    background-color: #e0e0e0;
+    border-radius: 10px;
+}
+.card .image-container {
+    width: 210px;
+    height: 292px;
+}
+.elipsis {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

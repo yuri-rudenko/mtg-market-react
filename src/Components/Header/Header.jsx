@@ -48,13 +48,23 @@ const Header = (props) => {
         }
         getData()
     }
+
+    const handleLogoHover = () => {
+        const header = document.querySelector('.Header')
+        header.classList.add('hovered')
+    }
+    
+      const handleLogoLeave = () => {
+        const header = document.querySelector('.Header')
+        header.classList.remove('hovered')
+    }
     
     
     const { Search } = Input;
 
     return (
         <div className='Header'>
-            <img onClick={setDefault} src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Magicthegathering-logo.svg/1280px-Magicthegathering-logo.svg.png" alt="Magic" className='logo'/>
+            <img onClick={setDefault} src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Magicthegathering-logo.svg/1280px-Magicthegathering-logo.svg.png" onMouseLeave={handleLogoLeave} onMouseEnter={handleLogoHover} alt="Magic" className='logo'/>
             <Search className='search' placeholder="input search text" allowClear enterButton size='large' styles={{color: "red"}} onSearch={onSearch}/>
             <ShopOutlined className='shop-outlined' onClick={() => navigate('/shop')}/>
             <img className='heart' src={heart} alt="heart" />
