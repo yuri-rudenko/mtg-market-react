@@ -19,7 +19,10 @@ function formUrlRarity(curRarity, setUrlArr) {
     }
 
     for(let i = 0; i<curRarity.length; i++) {
-        url += `r:${curRarity[i]}+`
+        if(i === 0) url+='('
+        url += `r:${curRarity[i]}`
+        if(i < curRarity.length-1)url += `+or+`
+        if(i === curRarity.length-1) url += `)+`
     }
 
     setUrlArr(prev => ({ ...prev, rarity: url }));

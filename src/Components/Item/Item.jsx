@@ -152,15 +152,15 @@ const Item = (props) => {
                             <p>Categories: </p>
                             <p onClick={() => navigate(`/shop/mv=${card.cmc}`)}>Cmc: {card.cmc},</p>
                             {card.type_line.split(' — ')[0].split(' ').map(type => {
-                                return <p onClick={() => navigate(`/shop/t:${type}`)} key={type}>{type},</p>
+                                return <p onClick={() => navigate(`/shop/t:${type}+`)} key={type}>{type},</p>
                             })}
                             {card.type_line.split(' — ')[1] && card.type_line.split(' — ')[1].split(' ').map(type => {
-                                return <p key={type}>{type},</p>
+                                return <p onClick={() => navigate(`/shop/t:${type}+`)} key={type}>{type},</p>
                             })}
-                            <p>{findMatchingCombination(combinations, card.colors)},</p>
+                            <p onClick={() => navigate(`/shop/(c=${combinations.find(comb => comb.name===findMatchingCombination(combinations, card.colors))['code']})+`)}>{findMatchingCombination(combinations, card.colors)},</p>
                             <p>{card.released_at.slice(0,4)},</p>
-                            <p>{card.set.toUpperCase()},</p>
-                            <p>{card.rarity.charAt(0).toUpperCase() + card.rarity.slice(1)}</p>
+                            <p onClick={() => navigate(`/shop/(e:${card.set})`)}>{card.set.toUpperCase()},</p>
+                            <p onClick={() => navigate(`/shop/(r:${card.rarity})`)}>{card.rarity.charAt(0).toUpperCase() + card.rarity.slice(1)}</p>
                         </div>
                         <p className='avalibility'>Avalibility: 99</p>    
                         <Divider style={{background:"grey"}}/>

@@ -15,6 +15,8 @@ function App() {
     const { cards, loading, setCards, setLoading } = useCardData()
     const course = getCourse()
 
+    console.log('COURSE', course)
+
     const [urlArr, setUrlArr] = useState({
         name:'',
         order: '',

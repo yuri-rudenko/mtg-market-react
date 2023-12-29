@@ -49,9 +49,18 @@
     width: fit-content;
     font-size: 20px;
 }
+.Item .categories p:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+.Item .categories p:active {
+    position: relative;
+    top: 2px;
+}
 .Item .avalibility {
     margin-top: 10px;
     font-size: 20px;
+    cursor: default;
 }
 
 .Item .add-to-cart-item {
