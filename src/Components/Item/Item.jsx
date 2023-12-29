@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Card, { getImageSrc, getPrice } from '../Cards/Card/Card';
 import './Item.css'
 import { Divider } from 'antd';
@@ -27,6 +27,8 @@ export const findMatchingCombination = (combinations, selectedColors) => {
 const Item = (props) => {
 
     const course = props.course
+
+    const navigate = useNavigate()
 
     const {id} = useParams()
     const [card, setCard] = useState({})
@@ -148,9 +150,9 @@ const Item = (props) => {
                         <Divider style={{background:"grey"}}/>
                         <div className="categories">
                             <p>Categories: </p>
-                            <p>Cmc: {card.cmc},</p>
+                            <p onClick={() => navigate(`/shop/mv=${card.cmc}`)}>Cmc: {card.cmc},</p>
                             {card.type_line.split(' — ')[0].split(' ').map(type => {
-                                return <p key={type}>{type},</p>
+                                return <p onClick={() => navigate(`/shop/t:${type}`)} key={type}>{type},</p>
                             })}
                             {card.type_line.split(' — ')[1] && card.type_line.split(' — ')[1].split(' ').map(type => {
                                 return <p key={type}>{type},</p>

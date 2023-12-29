@@ -11,6 +11,7 @@ import Name from './Selectors/Name/Name';
 import createLink from '../../Functions/createLink';
 import Formats from './Selectors/Formats/Formats.jsx';
 import Manacost from './Selectors/Manacost/Manacost';
+import Rarity from './Selectors/Rarity/Rarity';
 
 const Selector = (props) => {
 
@@ -46,6 +47,7 @@ const Selector = (props) => {
             <Name setUrlArr={setUrlArr} params={params}/>
             <Value setUrlArr={setUrlArr} course={props.course} params={params}/>
             <Sets setUrlArr={setUrlArr} params={params}/>
+            <Rarity setUrlArr={setUrlArr} params={params}/>
             <Colors setUrlArr={setUrlArr} params={params}/>
             <Types setUrlArr={setUrlArr} params={params}/>
             <Formats setUrlArr={setUrlArr} params={params}/>
