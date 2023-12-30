@@ -12,6 +12,7 @@ import createLink from '../../Functions/createLink';
 import Formats from './Selectors/Formats/Formats.jsx';
 import Manacost from './Selectors/Manacost/Manacost';
 import Rarity from './Selectors/Rarity/Rarity';
+import Unique from './Selectors/Unique/Unique';
 
 const Selector = (props) => {
 
@@ -40,9 +41,26 @@ const Selector = (props) => {
 
     }, [urlArr])
 
+    useEffect(() => {
+
+        const handleKeyPress = (event) => {
+            if (event.key === 'Enter') {
+                createLink(url, addUrl, urlArr, navigate)
+            }
+        }
+    
+        document.addEventListener('keyup', handleKeyPress)
+    
+        return () => {
+            document.removeEventListener('keyup', handleKeyPress)
+        }
+    }, [url, addUrl, urlArr, navigate])
+    
+
     return (
         <div className='Selector'>
             <h2>Products Filter</h2>
+            <Unique setUrlArr={setUrlArr} params={params} />
             <Button style={{backgroundColor:"Brown"}} onClick={() => {createLink(url, addUrl, urlArr, navigate)}}>Search</Button>
             <Name setUrlArr={setUrlArr} params={params}/>
             <Value setUrlArr={setUrlArr} course={props.course} params={params}/>

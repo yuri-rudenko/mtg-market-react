@@ -26,9 +26,10 @@ function App() {
         types:'',
         subtypes:'',
         formats:'',
+        rarity:'',
+        unique:'',
         page:'',
         show:'',
-        rarity:'',
     })
 
     const [selectedPage, setSelectedPage] = useState(1)

@@ -20,7 +20,6 @@ const Name = (props) => {
     useEffect(() => {
 
         const splited = params.split('+')
-        console.log(splited, 'SPLITED')
 
         if(!(splited[0].includes('=') || splited[0].includes(':'))) {
 

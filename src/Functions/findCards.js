@@ -8,6 +8,25 @@ function replaceMana(str) {
     return newString
 }
 
+function replaceUnique(str) {
+    const uValueRegex = /u:([^+]+)\+/
+    const match = str.match(uValueRegex)
+
+    if (match && match[1]) {
+
+        let uValue = match[1]
+        if(uValue === 'false') uValue = false
+        else uValue = true
+
+        const modifiedString = str.replace(`u:${uValue}+`, '')
+
+        return [modifiedString, uValue]
+
+    } else {
+        return [str]
+    }
+}
+
 function findValue(str, symbol) {
 
 
@@ -43,29 +62,34 @@ function findValue(str, symbol) {
 function newValues(inputStr) {
 
     const str = replaceMana(inputStr)
+    const [strU, unique] = replaceUnique(str)
 
-    const [newParamsO, order, last] = findValue(str, 'o')
+    const [newParamsO, order, last] = findValue(strU, 'o')
     const [newParamsP, page] = findValue(newParamsO, 'p')
     const [newParams, show] = findValue(newParamsP, 's')
 
     let rev = '&dir='
     last == 0? rev += `asc&q=`: rev+=`desc&q=`
 
-    return([newParams, order, rev, Number(page) - 1, Number(show)])
+    return([newParams, order, rev, Number(page) - 1, Number(show), unique])
 
 }
 
 function findCards(params, setCards, setLoading, setSelectedPage) {
 
-    let [newParams, order, reverse, page, show] = newValues(params)
+    let [newParams, order, reverse, page, show, unique] = newValues(params)
 
     if(page===-1) page = 0
 
     const startingPage = Math.floor(((page)*show)/175) + 1
 
-    //console.log([newParams, order, reverse, page, show, startingPage], "LOT OF DATA")
+    // console.log([newParams, order, reverse, page, show, startingPage, unique], "LOT OF DATA")
 
-    const newUrl = 'https://api.scryfall.com/cards/search?' + `page=${startingPage}&` + 'order=' + order + reverse + newParams + '-is%3Afunny+-is:digital'
+    const newUrl = 'https://api.scryfall.com/cards/search?' +
+        `page=${startingPage}&` +
+        'order=' + order + reverse + newParams + '-is%3Afunny+-is:digital' +
+        (unique===false ? '' : '&unique=prints')
+
     console.log(newUrl)
 
     try {
@@ -130,8 +154,6 @@ function findCards(params, setCards, setLoading, setSelectedPage) {
                             while (first > 174) {
                                 first -= 175;
                             }
-
-                            console.log(response.data, 'DATA IF FAILKS')
                         
                             newCards.push(...response.data.data.slice(first, first + show))
                         
