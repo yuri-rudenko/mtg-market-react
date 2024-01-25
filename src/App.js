@@ -13,7 +13,17 @@ import Favourites from './Components/Favourites/Favourites';
 
 function App() {
     const { cards, loading, setCards, setLoading } = useCardData()
-    const course = getCourse()
+    const [course, setCourse] = useState(1)
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const result = await getCourse();
+            setCourse(result);
+        };
+
+        fetchData();
+    }, [])
+
 
     console.log('COURSE', course)
 
