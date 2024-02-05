@@ -126,12 +126,15 @@ const Item = (props) => {
         console.log(recommendedCards, 'REC')
     }, [recommendedCards, setRecommendedCards])
 
+    const foundCard = cards.find(card => card.id === id)
+
+    const marginTop = foundCard ? 30 : 75
 
     return (
         Object.keys(card).length > 0 && (
             <div className="Item-wrapper">
-            <div className='Item'>
-                {cards.find(card => card.id === id) && (
+            <div className='Item' style={{ marginTop: marginTop }}>
+                {foundCard && (
                     <div className="added-to-cart">
                         <CheckOutlined style={{color: '#00C851', fontSize:26}} />
                         <p className='added-to-cart-name'>{card.name} x{cards.find(findCard => findCard.id === card.id).amount}</p>

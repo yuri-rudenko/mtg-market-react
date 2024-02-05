@@ -55,21 +55,30 @@ const Selector = (props) => {
             document.removeEventListener('keyup', handleKeyPress)
         }
     }, [url, addUrl, urlArr, navigate])
+
+    const handleClear = () => {
+        navigate('/shop')
+    }
     
 
     return (
         <div className='Selector'>
             <h2>Products Filter</h2>
-            <Unique setUrlArr={setUrlArr} params={params} />
-            <Button style={{backgroundColor:"Brown"}} onClick={() => {createLink(url, addUrl, urlArr, navigate)}}>Search</Button>
-            <Name setUrlArr={setUrlArr} params={params}/>
-            <Value setUrlArr={setUrlArr} course={props.course} params={params}/>
-            <Sets setUrlArr={setUrlArr} params={params}/>
-            <Rarity setUrlArr={setUrlArr} params={params}/>
-            <Colors setUrlArr={setUrlArr} params={params}/>
-            <Types setUrlArr={setUrlArr} params={params}/>
-            <Formats setUrlArr={setUrlArr} params={params}/>
-            <Manacost setUrlArr={setUrlArr} params={params}/>
+            <div className="selectors">
+                <Unique setUrlArr={setUrlArr} params={params} />
+                <div className="small-buttons">
+                    <Button size='large' style={{backgroundColor:"Green", color:"white", border:"2px solid black"}} onClick={() => {createLink(url, addUrl, urlArr, navigate)}}>Search</Button>
+                    <Button size='large' style={{backgroundColor:"Darkred", color:"white", border:"2px solid black"}} onClick={() => {handleClear()}}>Clear</Button>
+                </div>
+                <Name setUrlArr={setUrlArr} params={params}/>
+                <Value setUrlArr={setUrlArr} course={props.course} params={params}/>
+                <Sets setUrlArr={setUrlArr} params={params}/>
+                <Rarity setUrlArr={setUrlArr} params={params}/>
+                <Colors setUrlArr={setUrlArr} params={params}/>
+                <Types setUrlArr={setUrlArr} params={params}/>
+                <Formats setUrlArr={setUrlArr} params={params}/>
+                <Manacost setUrlArr={setUrlArr} params={params}/>
+            </div>
         </div>
     );
 }

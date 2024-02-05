@@ -9,7 +9,7 @@ const AutoCarousel = (props) => {
     const cards = props.cards
     const show = props.show
 
-    const autoScrollTime = Math.floor(Math.random() * 2000) + 3000
+    const autoScrollTime = Math.floor(Math.random() * 20000) + 50000
 
     const renderCarouselCards = (startIndex) => {
         

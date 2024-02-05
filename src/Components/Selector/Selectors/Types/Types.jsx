@@ -131,7 +131,7 @@ const Types = (props) => {
                         }
                 </Select>
             </div>
-            <div className='Subtypes'>
+            <div className='Subtypes' style={{marginTop:5}}>
                 <Select
                         mode="multiple"
                         size="large"
