@@ -83,7 +83,7 @@ const Card = (props) => {
     return (
         <div className="card">
             <div className='image-container'>
-                {loading && <div className='card-loading'>
+                {loading && <div className='card-loading'  onClick={() => navigate(`/item/${card.id}`)}>
                     <div className="elipsis">
                     <div className="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
                     </div>
@@ -92,12 +92,22 @@ const Card = (props) => {
                   src={getImageSrc(card)}
                   alt=""
                   onClick={() => navigate(`/item/${card.id}`)}
-                  style={{ opacity: loading ? 0 : 1 }}
+                  style={{ visibility: loading ? "hidden" : "visible" }}
                   loading='lazy'
+                  className={card.card_faces ? "front-of-backside" : ""}
                 />
+                {card.card_faces && <img
+                  src={getImageSrc(card.card_faces[1])}
+                  alt=""
+                  onClick={() => navigate(`/item/${card.id}`)}
+                  style={{ visibility: loading ? "hidden" : "visible" }}
+                  loading='lazy'
+                  className='backside-card'
+                />
+                }
             </div>
             <div className='text'>
-                <p onClick={() => console.log(card.id)} className='cardName'>{card.name}</p>
+                <p className='cardName'>{card.name}</p>
                 <p className="price">{getPrice(card, course) !== 0 ? `${getPrice(card, course)} ₴` : '-'}</p>
             </div>
             <div className="inputs">

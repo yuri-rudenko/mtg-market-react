@@ -3,6 +3,14 @@
     border-radius: 10px;
     cursor: pointer;
 }
+.card .front-of-backside:hover {
+    opacity: 0;
+}
+.card .backside-card {
+    position: relative;
+    bottom: calc(100% + 5px);
+    z-index: -5;
+}
 .card h1 {
     color: black;
 }
@@ -112,6 +120,7 @@
     display: block; 
 }
 .card .card-loading {
+    cursor: pointer;
     width: 210px;
     height: 292px;
     background-color: #e0e0e0;
