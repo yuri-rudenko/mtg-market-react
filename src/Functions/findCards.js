@@ -9,21 +9,24 @@ function replaceMana(str) {
 }
 
 function replaceUnique(str) {
+
     const uValueRegex = /u:([^+]+)\+/
     const match = str.match(uValueRegex)
 
     if (match && match[1]) {
 
         let uValue = match[1]
-        if(uValue === 'false') uValue = false
-        else uValue = true
+        if(uValue === 'true') uValue = true
+        else uValue = false
 
         const modifiedString = str.replace(`u:${uValue}+`, '')
 
         return [modifiedString, uValue]
 
     } else {
-        return [str]
+
+        const modifiedString = str += `u:${false}+`
+        return [modifiedString, false]
     }
 }
 

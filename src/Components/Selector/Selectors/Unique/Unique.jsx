@@ -14,15 +14,15 @@ const Unique = (props) => {
 
     const params = props.params
     const setUrlArr = props.setUrlArr
-    const [selected, setSelected] = useState(true)
+    const [selected, setSelected] = useState(false)
 
     useEffect(() => {
 
         let all = parseLink(params, 'u', ':').map(el => el.code)[0]
-        if(all === 'false') all = false
-        else all = true
+        if(all === 'true') all = true
+        else all = false
 
-        if(all) {
+        if(all === true || all === false) {
 
             formUrlUnique(all, setUrlArr)
             setSelected(all)
